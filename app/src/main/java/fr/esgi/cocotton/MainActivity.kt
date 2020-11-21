@@ -1,8 +1,10 @@
 package fr.esgi.cocotton
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -42,10 +44,16 @@ class MainActivity : AppCompatActivity() {
                     .replace(R.id.container, SettingFragment.newInstance())
                     .commitNow()
 */
-
                 return true
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    fun login() {
+        val name = findViewById<EditText>(R.id.new_recipe_form_name)
+        val time = findViewById<EditText>(R.id.new_recipe_form_time)
+
+        Log.d("info","send form ${name.text}, ${time.text}")
     }
 }
