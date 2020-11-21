@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "115322434116",
+    "firebase_url": "https://cocotton-63b07.firebaseio.com",
+    "project_id": "cocotton-63b07",
+    "storage_bucket": "cocotton-63b07.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:115322434116:android:5f2ef15fa8a4e7ef308211",
+        "android_client_info": {
+          "package_name": "fr.esgi.cocotton"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "115322434116-lgou7jll60iabtsgls7cbqpn7ps4us4e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxem_TvzB5IYnF9fK8xYAc15IXopatwlg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "115322434116-lgou7jll60iabtsgls7cbqpn7ps4us4e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
