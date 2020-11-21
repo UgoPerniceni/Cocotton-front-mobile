@@ -14,6 +14,7 @@
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -23,6 +24,21 @@
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+
+        <action
+            android:id="@+id/action_SecondFragment_to_SettingFragment"
+            app:destination="@id/SettingFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/SettingFragment"
+        android:name="fr.esgi.cocotton.SettingFragment"
+        android:label="@string/settings_fragment_label"
+        tools:layout="@layout/fragment_setting">
+
+        <action
+            android:id="@+id/action_SettingFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
 </navigation>
