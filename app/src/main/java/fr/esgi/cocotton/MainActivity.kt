@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 
@@ -36,12 +36,12 @@ class MainActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> {
-
-/*                supportFragmentManager
+/*
+                supportFragmentManager
                     .beginTransaction()
-                        // ajouter le this en parametre pour éviter les erreurs
-                    .replace(R.id.container, SettingFragment.newInstance("toto", "tata"))
-                    .commitNow()*/
+                    .replace(R.id.container, SettingFragment.newInstance())
+                    .commitNow()
+*/
 
                 return true
             }

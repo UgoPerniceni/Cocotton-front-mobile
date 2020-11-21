@@ -26,6 +26,7 @@ class SecondFragment : Fragment(), View.OnClickListener {
 
         view.findViewById<Button>(R.id.button_second).setOnClickListener(this)
         view.findViewById<Button>(R.id.button_third).setOnClickListener(this)
+        view.findViewById<Button>(R.id.button_new_recipe).setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
@@ -33,9 +34,11 @@ class SecondFragment : Fragment(), View.OnClickListener {
             R.id.button_second -> {
                 findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
             }
-
             R.id.button_third -> {
                 findNavController().navigate(R.id.action_SecondFragment_to_SettingFragment)
+            }
+            R.id.button_new_recipe -> {
+                findNavController().navigate(R.id.action_SecondFragment_to_NewRecipeFragment)
             }
         }
     }
