@@ -10,6 +10,13 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
+import com.google.firebase.ktx.Firebase
+import fr.esgi.cocotton.model.Recipe
 
 
 class MainActivity : AppCompatActivity() {
@@ -54,6 +61,14 @@ class MainActivity : AppCompatActivity() {
         val name = findViewById<EditText>(R.id.new_recipe_form_name)
         val time = findViewById<EditText>(R.id.new_recipe_form_time)
 
-        Log.d("info","send form ${name.text}, ${time.text}")
+        val newRecipe = Recipe("${name.text}", "${time.text}", "/path")
+
+        Log.d("info","add new recipe to DB : $newRecipe")
+
+        // Write a message to the database
+        val database = Firebase.database
+        val myRef = database.getReference("Recipe")
+
+        myRef.setValue("$newRecipe")
     }
 }
