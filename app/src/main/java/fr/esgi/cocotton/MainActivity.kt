@@ -6,15 +6,9 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
-import com.google.firebase.database.ktx.getValue
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import fr.esgi.cocotton.model.Recipe
 
@@ -65,10 +59,18 @@ class MainActivity : AppCompatActivity() {
 
         Log.d("info","add new recipe to DB : $newRecipe")
 
-        // Write a message to the database
-        val database = Firebase.database
-        val myRef = database.getReference("Recipe")
+        // Access a Cloud Firestore instance from your Activity
+        val db = Firebase.firestore
 
-        myRef.setValue("$newRecipe")
+        // Add a new document with a generated ID
+        db.collection("recipes")
+            .add(newRecipe)
+            .addOnSuccessListener { documentReference ->
+                Log.d("onSuccess", "DocumentSnapshot added with ID: ${documentReference.id}")
+            }
+            .addOnFailureListener { e ->
+                Log.w("onFailure", "Error adding document", e)
+            }
+
     }
 }
