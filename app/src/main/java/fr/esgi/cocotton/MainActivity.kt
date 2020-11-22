@@ -4,8 +4,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.EditText
+import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.ktx.firestore
@@ -14,6 +17,9 @@ import fr.esgi.cocotton.model.Recipe
 
 
 class MainActivity : AppCompatActivity() {
+
+    private var loader: ProgressBar? = null
+    private var fadeScreen: View? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +30,9 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
+
+        loader = findViewById(R.id.loader)
+        fadeScreen = findViewById(R.id.fadeScreen)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -39,12 +48,10 @@ class MainActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> {
-/*
-                supportFragmentManager
+/*                supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.container, SettingFragment.newInstance())
-                    .commitNow()
-*/
+                    .replace(R.id.content, SettingFragment.newInstance())
+                    .commitNow()*/
                 return true
             }
             else -> super.onOptionsItemSelected(item)
@@ -72,5 +79,15 @@ class MainActivity : AppCompatActivity() {
                 Log.w("onFailure", "Error adding document", e)
             }
 
+    }
+
+    fun showLoader() {
+        fadeScreen?.isVisible = true
+        loader?.isVisible = true
+    }
+
+    fun hideLoader() {
+        fadeScreen?.isVisible = false
+        loader?.isVisible = false
     }
 }

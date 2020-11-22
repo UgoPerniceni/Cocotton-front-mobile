@@ -43,6 +43,8 @@ class SecondFragment : Fragment(), View.OnClickListener {
         val recipes = mutableListOf<Recipe>()
         val db = Firebase.firestore
 
+        (activity as MainActivity?)?.showLoader()
+
         db.collection("recipes")
             .get()
             .addOnSuccessListener { result ->
@@ -60,6 +62,8 @@ class SecondFragment : Fragment(), View.OnClickListener {
                     layoutManager = LinearLayoutManager(this.context)
                     adapter = MyAdapter(recipes)
                 }
+
+                (activity as MainActivity?)?.hideLoader()
             }
     }
 
