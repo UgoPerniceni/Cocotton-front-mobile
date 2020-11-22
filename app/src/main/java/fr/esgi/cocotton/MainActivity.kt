@@ -48,23 +48,21 @@ class MainActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> {
-/*                supportFragmentManager
+                supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.content, SettingFragment.newInstance())
-                    .commitNow()*/
+                    .commitNow()
                 return true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
-    fun login() {
+    fun addRecipe() {
         val name = findViewById<EditText>(R.id.new_recipe_form_name)
         val time = findViewById<EditText>(R.id.new_recipe_form_time)
 
         val newRecipe = Recipe("${name.text}", "${time.text}", "/path")
-
-        Log.d("info","add new recipe to DB : $newRecipe")
 
         // Access a Cloud Firestore instance from your Activity
         val db = Firebase.firestore
@@ -78,7 +76,6 @@ class MainActivity : AppCompatActivity() {
             .addOnFailureListener { e ->
                 Log.w("onFailure", "Error adding document", e)
             }
-
     }
 
     fun showLoader() {

@@ -29,7 +29,7 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
     override fun onClick(view: View?) {
         when(view?.id) {
             R.id.new_recipe_form_button_validate -> {
-                (activity as MainActivity?)?.login()
+                (activity as MainActivity?)?.addRecipe()
             }
         }
     }
