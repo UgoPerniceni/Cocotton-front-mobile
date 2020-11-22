@@ -1,17 +1,27 @@
 package fr.esgi.cocotton
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import fr.esgi.cocotton.adapter.MyAdapter
+import fr.esgi.cocotton.model.Recipe
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
 class SecondFragment : Fragment(), View.OnClickListener {
+
+    private var recyclerView: RecyclerView? = null
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +37,30 @@ class SecondFragment : Fragment(), View.OnClickListener {
         view.findViewById<Button>(R.id.button_second).setOnClickListener(this)
         view.findViewById<Button>(R.id.button_third).setOnClickListener(this)
         view.findViewById<Button>(R.id.button_new_recipe).setOnClickListener(this)
+
+        recyclerView = view.findViewById(R.id.recyclerView_recipes)
+
+        val recipes = mutableListOf<Recipe>()
+        val db = Firebase.firestore
+
+        db.collection("recipes")
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    Log.d("--- success ---", "${document.id} => ${document.data}")
+                    recipes.add(Recipe(document.data["name"] as String, document.data["time"] as String, document.data["image"] as String))
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w("failure", "Error getting documents.", exception)
+            }
+
+            .addOnCompleteListener {
+                recyclerView?.apply {
+                    layoutManager = LinearLayoutManager(this.context)
+                    adapter = MyAdapter(recipes)
+                }
+            }
     }
 
     override fun onClick(view: View?) {
