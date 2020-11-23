@@ -1,10 +1,11 @@
 package fr.esgi.cocotton
 
+import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Bundle
-import android.os.LocaleList
+import android.preference.PreferenceManager
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.Menu
@@ -24,10 +25,7 @@ import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
-
     var defaultLanguage = "en"
-    var myLocale: Locale? = null
-    var currentLang: String = ""
 
     private var loader: ProgressBar? = null
     private var fadeScreen: View? = null
@@ -36,8 +34,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
-
-        defaultLanguage = getIntent().getStringExtra(currentLang).toString();
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -101,19 +97,25 @@ class MainActivity : AppCompatActivity() {
         loader?.isVisible = false
     }
 
-    fun updateLanguage(localeName: String) {
-        if (localeName != defaultLanguage) {
-            myLocale = Locale(localeName)
-            val resources: Resources = resources
-            val dm: DisplayMetrics = resources.displayMetrics
-            val conf: Configuration = resources.configuration
-            conf.setLocale(myLocale)
-            resources.updateConfiguration(conf, dm)
-            val refresh = Intent(this, MainActivity::class.java)
-            refresh.putExtra(defaultLanguage, localeName)
-            startActivity(refresh)
-        } else {
-            Toast.makeText(this, "Language already selected!", Toast.LENGTH_SHORT).show();
+    fun updateLanguage(newLanguage: String) {
+        val sharedPreferences = getPreferences(Context.MODE_PRIVATE)
+
+        if(sharedPreferences.contains("language")){
+            if (newLanguage != sharedPreferences.getString("language", "eng")) {
+                val newLocaleConf : Locale = Locale(newLanguage)
+                val resources: Resources = resources
+                val dm: DisplayMetrics = resources.displayMetrics
+                val conf: Configuration = resources.configuration
+                conf.setLocale(newLocaleConf)
+                resources.updateConfiguration(conf, dm)
+                sharedPreferences.edit().putString("language", newLanguage).apply();
+
+                val refresh = Intent(this, MainActivity::class.java)
+                refresh.putExtra(defaultLanguage, newLanguage)
+                startActivity(refresh)
+            } else {
+                Toast.makeText(this, "Language already selected!", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }

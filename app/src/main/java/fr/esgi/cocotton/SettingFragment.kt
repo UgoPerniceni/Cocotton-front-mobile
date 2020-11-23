@@ -30,8 +30,12 @@ class SettingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        spinner = view.findViewById(fr.esgi.cocotton.R.id.spinner_language)
+        spinner = view.findViewById(R.id.spinner_language)
 
+        initializeSpinner()
+    }
+
+    private fun initializeSpinner(){
         spinner?.apply {
             val list: MutableList<String> = ArrayList()
 
@@ -40,7 +44,7 @@ class SettingFragment : Fragment() {
             list.add("Español")
             list.add("Français")
 
-            val adapter: ArrayAdapter<String> = ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, list)
+            val adapter: ArrayAdapter<String> = ArrayAdapter(context, android.R.layout.simple_spinner_item, list)
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             this.adapter = adapter
 
@@ -53,14 +57,14 @@ class SettingFragment : Fragment() {
                         else -> {}
                     }
                 }
-
                 override fun onNothingSelected(adapterView: AdapterView<*>?) {}
             }
         }
     }
 
-        companion object {
-            @JvmStatic
-            fun newInstance() = SettingFragment()
-        }
+    companion object {
+        @JvmStatic
+        fun newInstance() = SettingFragment()
     }
+
+}

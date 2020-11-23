@@ -63,8 +63,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
                     layoutManager = LinearLayoutManager(this.context)
                     adapter = MyAdapter(recipes)
 
-                    this.addItemDecoration(DividerItemDecoration(context,
-                            DividerItemDecoration.VERTICAL));
+                    this.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
                 }
 
                 (activity as MainActivity?)?.hideLoader()

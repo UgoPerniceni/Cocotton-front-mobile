@@ -15,8 +15,8 @@
     <string name="name">Nombre</string>
     <string name="time">Hora</string>
     <string name="validate">Validar</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hola nouveau fragment</string>
+
     <string name="first_fragment_label">Primer fragmento</string>
     <string name="second_fragment_label">Segundo fragmento</string>
+    <string name="login">Acceso</string>
 </resources>

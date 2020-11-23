@@ -16,6 +16,6 @@
     <string name="name">Name</string>
     <string name="time">Time</string>
     <string name="validate">Validate</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="login">Login</string>
 </resources>
