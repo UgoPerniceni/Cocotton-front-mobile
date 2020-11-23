@@ -51,9 +51,9 @@ class SettingFragment : Fragment() {
             this.onItemSelectedListener = object : OnItemSelectedListener {
                 override fun onItemSelected(adapterView: AdapterView<*>?, view: View, position: Int, l: Long) {
                     when (position) {
-                        1 -> (activity as MainActivity?)?.updateLanguage("eng")
-                        2 -> (activity as MainActivity?)?.updateLanguage("es")
-                        3 -> (activity as MainActivity?)?.updateLanguage("fr")
+                        1 -> (activity as MainActivity?)?.setLocale("eng")
+                        2 -> (activity as MainActivity?)?.setLocale("es")
+                        3 -> (activity as MainActivity?)?.setLocale("fr")
                         else -> {}
                     }
                 }

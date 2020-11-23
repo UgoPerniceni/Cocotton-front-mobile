@@ -1,19 +1,14 @@
 package fr.esgi.cocotton
 
-import android.content.Context
-import android.content.Intent
+import android.app.Activity
 import android.content.res.Configuration
-import android.content.res.Resources
 import android.os.Bundle
-import android.preference.PreferenceManager
-import android.util.DisplayMetrics
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
 import android.widget.ProgressBar
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -25,8 +20,6 @@ import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
-    var defaultLanguage = "en"
-
     private var loader: ProgressBar? = null
     private var fadeScreen: View? = null
 
@@ -34,6 +27,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
+
+        loadLocate()
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -97,25 +92,21 @@ class MainActivity : AppCompatActivity() {
         loader?.isVisible = false
     }
 
-    fun updateLanguage(newLanguage: String) {
-        val sharedPreferences = getPreferences(Context.MODE_PRIVATE)
+    fun setLocale(newLanguage: String) {
+        val locale = Locale(newLanguage)
+        val config = Configuration()
 
-        if(sharedPreferences.contains("language")){
-            if (newLanguage != sharedPreferences.getString("language", "eng")) {
-                val newLocaleConf : Locale = Locale(newLanguage)
-                val resources: Resources = resources
-                val dm: DisplayMetrics = resources.displayMetrics
-                val conf: Configuration = resources.configuration
-                conf.setLocale(newLocaleConf)
-                resources.updateConfiguration(conf, dm)
-                sharedPreferences.edit().putString("language", newLanguage).apply();
+        Locale.setDefault(locale)
+        config.setLocale(locale)
+        baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
 
-                val refresh = Intent(this, MainActivity::class.java)
-                refresh.putExtra(defaultLanguage, newLanguage)
-                startActivity(refresh)
-            } else {
-                Toast.makeText(this, "Language already selected!", Toast.LENGTH_SHORT).show();
-            }
-        }
+        val editor = getSharedPreferences("Settings", Activity.MODE_PRIVATE).edit()
+        editor.putString("language", newLanguage).apply()
+    }
+
+    private fun loadLocate(){
+        val sharedPreferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE)
+        val language = sharedPreferences.getString("language", "eng")
+        language?.let { setLocale(it) }
     }
 }
