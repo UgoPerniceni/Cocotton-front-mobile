@@ -1,12 +1,18 @@
 package fr.esgi.cocotton
 
+import android.content.Intent
+import android.content.res.Configuration
+import android.content.res.Resources
 import android.os.Bundle
+import android.os.LocaleList
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -14,9 +20,14 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import fr.esgi.cocotton.model.Recipe
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
+
+    var defaultLanguage = "en"
+    var myLocale: Locale? = null
+    var currentLang: String = ""
 
     private var loader: ProgressBar? = null
     private var fadeScreen: View? = null
@@ -25,6 +36,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
+
+        defaultLanguage = getIntent().getStringExtra(currentLang).toString();
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -86,5 +99,21 @@ class MainActivity : AppCompatActivity() {
     fun hideLoader() {
         fadeScreen?.isVisible = false
         loader?.isVisible = false
+    }
+
+    fun updateLanguage(localeName: String) {
+        if (localeName != defaultLanguage) {
+            myLocale = Locale(localeName)
+            val resources: Resources = resources
+            val dm: DisplayMetrics = resources.displayMetrics
+            val conf: Configuration = resources.configuration
+            conf.setLocale(myLocale)
+            resources.updateConfiguration(conf, dm)
+            val refresh = Intent(this, MainActivity::class.java)
+            refresh.putExtra(defaultLanguage, localeName)
+            startActivity(refresh)
+        } else {
+            Toast.makeText(this, "Language already selected!", Toast.LENGTH_SHORT).show();
+        }
     }
 }

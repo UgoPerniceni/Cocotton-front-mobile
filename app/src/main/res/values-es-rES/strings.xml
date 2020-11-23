@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Cocotton</string>
+    <string name="action_settings">Ajustes</string>
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="settings_fragment_label">Fragmento de configuración</string>
+    <string name="next">Siguiente</string>
+    <string name="previous">Previo</string>
+    <string name="third">Tercero</string>
+
+    <string name="hello_first_fragment">hola first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="new_recipe">Nueva receta</string>
+    <string name="name">Nombre</string>
+    <string name="time">Hora</string>
+    <string name="validate">Validar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hola nouveau fragment</string>
+    <string name="first_fragment_label">Primer fragmento</string>
+    <string name="second_fragment_label">Segundo fragmento</string>
+</resources>

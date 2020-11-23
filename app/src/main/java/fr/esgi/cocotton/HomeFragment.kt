@@ -2,18 +2,20 @@ package fr.esgi.cocotton
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import fr.esgi.cocotton.adapter.MyAdapter
 import fr.esgi.cocotton.model.Recipe
+
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -60,6 +62,9 @@ class HomeFragment : Fragment(), View.OnClickListener {
                 recyclerView?.apply {
                     layoutManager = LinearLayoutManager(this.context)
                     adapter = MyAdapter(recipes)
+
+                    this.addItemDecoration(DividerItemDecoration(context,
+                            DividerItemDecoration.VERTICAL));
                 }
 
                 (activity as MainActivity?)?.hideLoader()
