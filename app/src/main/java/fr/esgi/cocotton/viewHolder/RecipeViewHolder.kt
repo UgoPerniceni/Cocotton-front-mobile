@@ -16,12 +16,16 @@ class RecipeViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     private var name: TextView? = null
     private var time: TextView? = null
     private var image: TextView? = null
+/*    private var difficulty: TextView? = null
+    private var forPersons: TextView? = null*/
 
     init
     {
         name = itemView.findViewById(R.id.name)
         time = itemView.findViewById(R.id.time)
         image = itemView.findViewById(R.id.image)
+/*        difficulty = itemView.findViewById(R.id.difficulty)
+        forPersons = itemView.findViewById(R.id.forPersons)*/
     }
 
     fun bind(recipe: Recipe)
@@ -30,6 +34,8 @@ class RecipeViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         name?.text = recipe.name
         time?.text = recipe.time
         image?.text = recipe.image
+/*        difficulty?.text = recipe.difficulty
+        forPersons?.text = recipe.forPersons*/
     }
 
 }

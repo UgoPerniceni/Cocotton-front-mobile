@@ -15,6 +15,8 @@
     <string name="new_recipe">New recipe</string>
     <string name="name">Name</string>
     <string name="time">Time</string>
+    <string name="difficulty">Difficulty</string>
+    <string name="for_how_many_person">For how many person ?</string>
     <string name="validate">Validate</string>
 
     <string name="login">Login</string>

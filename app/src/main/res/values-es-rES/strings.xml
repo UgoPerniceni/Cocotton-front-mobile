@@ -14,6 +14,8 @@
     <string name="new_recipe">Nueva receta</string>
     <string name="name">Nombre</string>
     <string name="time">Hora</string>
+    <string name="difficulty">Dificultad</string>
+    <string name="for_how_many_person">¿ Para cuanta persona ?</string>
     <string name="validate">Validar</string>
 
     <string name="first_fragment_label">Primer fragmento</string>

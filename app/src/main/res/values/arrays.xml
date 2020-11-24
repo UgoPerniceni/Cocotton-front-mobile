@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="difficulty_array">
+        <item>Facile</item>
+        <item>Moyen</item>
+        <item>Difficile</item>
+    </string-array>
+
+    <string-array name="languages_array">
+        <item>Select language</item>
+        <item>English</item>
+        <item>Français</item>
+        <item>Español</item>
+    </string-array>
+</resources>

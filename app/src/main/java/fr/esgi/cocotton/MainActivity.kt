@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
 import android.widget.ProgressBar
+import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -52,10 +53,14 @@ class MainActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> {
+
+                /*
+                val fragment = SettingFragment()
                 supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.content, SettingFragment.newInstance())
-                    .commitNow()
+                        .beginTransaction()
+                        .replace(R.id.content_main, fragment)
+                        .commit()*/
+
                 return true
             }
             else -> super.onOptionsItemSelected(item)
@@ -65,8 +70,10 @@ class MainActivity : AppCompatActivity() {
     fun addRecipe() {
         val name = findViewById<EditText>(R.id.new_recipe_form_name)
         val time = findViewById<EditText>(R.id.new_recipe_form_time)
+        val forPerson = findViewById<EditText>(R.id.new_recipe_form_for_number)
+        val difficulty = findViewById<Spinner>(R.id.new_recipe_form_spinner_difficulty)
 
-        val newRecipe = Recipe("${name.text}", "${time.text}", "/path")
+        val newRecipe = Recipe("${name.text}", "${time.text}", ("${forPerson.text}").toLong(), "${difficulty.selectedItem}", "/path")
 
         // Access a Cloud Firestore instance from your Activity
         val db = Firebase.firestore

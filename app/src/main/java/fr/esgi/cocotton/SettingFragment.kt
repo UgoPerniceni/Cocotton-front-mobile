@@ -37,14 +37,8 @@ class SettingFragment : Fragment() {
 
     private fun initializeSpinner(){
         spinner?.apply {
-            val list: MutableList<String> = ArrayList()
-
-            list.add("Select language")
-            list.add("English")
-            list.add("Español")
-            list.add("Français")
-
-            val adapter: ArrayAdapter<String> = ArrayAdapter(context, android.R.layout.simple_spinner_item, list)
+            val languagesArray = resources.getStringArray(R.array.languages_array)
+            val adapter: ArrayAdapter<String> = ArrayAdapter(context, android.R.layout.simple_spinner_item, languagesArray)
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             this.adapter = adapter
 
