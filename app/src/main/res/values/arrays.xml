@@ -7,9 +7,14 @@
     </string-array>
 
     <string-array name="languages_array">
-        <item>Select language</item>
         <item>English</item>
         <item>Français</item>
         <item>Español</item>
+    </string-array>
+
+    <string-array name="themes_array">
+        <item>Select theme</item>
+        <item>Dark</item>
+        <item>White</item>
     </string-array>
 </resources>
