@@ -4,13 +4,19 @@
     <string name="action_settings">Parametres</string>
 
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">Premier Fragment</string>
+    <string name="navigation_return">Retour</string>
+    <string name="navigation_previous">Précédent</string>
+    <string name="navigation_next">Suivant</string>
+    <string name="navigation_create">Créer</string>
+    <string name="navigation_new">Nouveau</string>
+
+    <!-- fragments -->
+    <string name="login_fragment_label">Connection Fragment</string>
+    <string name="home_fragment_label">Accueil Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="settings_fragment_label">Parametre Fragment</string>
-    <string name="next">Suivant</string>
-    <string name="previous">Précedent</string>
-    <string name="third">Troisième</string>
 
+    <string name="third">Troisième</string>
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="new_recipe">Nouvelle recette</string>

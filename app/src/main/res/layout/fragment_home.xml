@@ -12,13 +12,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        app:layout_constraintTop_toTopOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
 
-        app:layout_constraintVertical_chainStyle="spread"
-        />
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_chainStyle="spread" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_horizontal"
@@ -38,25 +41,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         >
-    <Button
-        android:id="@+id/button_new_recipe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/new_recipe" />
 
-    <Button
-        android:id="@+id/button_second"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="@string/previous" />
+        <Button
+            android:id="@+id/button_fragment_home_new_recipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:text="@string/new_recipe" />
 
-    <Button
-        android:id="@+id/button_third"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="@string/action_settings" />
+        <Button
+            android:id="@+id/button_fragment_home_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="@string/action_settings" />
     </LinearLayout>
 
 

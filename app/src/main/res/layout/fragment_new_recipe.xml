@@ -118,7 +118,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:text="@string/previous"
+        android:text="@string/navigation_previous"
         app:layout_constraintTop_toTopOf="@id/guideline_horizontal_new_recipe"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_new_recipe_start"
         app:layout_constraintEnd_toStartOf="@+id/new_recipe_form_button_validate"
@@ -131,6 +131,7 @@
         android:layout_height="wrap_content"
 
         android:text="@string/validate"
+
         app:layout_constraintTop_toTopOf="@id/guideline_horizontal_new_recipe"
         app:layout_constraintStart_toEndOf="@+id/new_recipe_form_button_return"
         app:layout_constraintEnd_toEndOf="@+id/guideline_vertical_new_recipe_end"

@@ -4,11 +4,18 @@
     <string name="action_settings">Ajustes</string>
 
     <!-- Strings used for fragments for navigation -->
-    <string name="settings_fragment_label">Fragmento de configuración</string>
-    <string name="next">Siguiente</string>
-    <string name="previous">Previo</string>
-    <string name="third">Tercero</string>
+    <string name="navigation_return">Regreso</string>
+    <string name="navigation_previous">Previo</string>
+    <string name="navigation_next">Siguiente</string>
+    <string name="navigation_create">Crear</string>
+    <string name="navigation_new">Nuevo</string>
 
+    <!-- fragments -->
+    <string name="login_fragment_label">Conexión Fragment</string>
+    <string name="home_fragment_label">Inicio Fragment</string>
+    <string name="settings_fragment_label">Fragmento de configuración</string>
+
+    <string name="third">Tercero</string>
     <string name="hello_first_fragment">hola first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="new_recipe">Nueva receta</string>
@@ -18,7 +25,6 @@
     <string name="for_how_many_person">¿ Para cuanta persona ?</string>
     <string name="validate">Validar</string>
 
-    <string name="first_fragment_label">Primer fragmento</string>
     <string name="second_fragment_label">Segundo fragmento</string>
     <string name="login">Acceso</string>
     <string name="action_themes">Temas</string>

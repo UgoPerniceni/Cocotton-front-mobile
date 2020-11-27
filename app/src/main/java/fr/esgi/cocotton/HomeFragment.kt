@@ -35,9 +35,8 @@ class HomeFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<Button>(R.id.button_second).setOnClickListener(this)
-        view.findViewById<Button>(R.id.button_third).setOnClickListener(this)
-        view.findViewById<Button>(R.id.button_new_recipe).setOnClickListener(this)
+        view.findViewById<Button>(R.id.button_fragment_home_settings).setOnClickListener(this)
+        view.findViewById<Button>(R.id.button_fragment_home_new_recipe).setOnClickListener(this)
 
         recyclerView = view.findViewById(R.id.recyclerView_recipes)
 
@@ -71,7 +70,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
             .addOnCompleteListener {
                 recyclerView?.apply {
-                    this.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
+                    this.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
                 }
 
                 (activity as MainActivity).hideLoader()
@@ -80,14 +79,11 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(view: View?) {
         when(view?.id){
-            R.id.button_second -> {
-                findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+            R.id.button_fragment_home_settings -> {
+                findNavController().navigate(R.id.action_HomeFragment_to_SettingFragment)
             }
-            R.id.button_third -> {
-                findNavController().navigate(R.id.action_SecondFragment_to_SettingFragment)
-            }
-            R.id.button_new_recipe -> {
-                findNavController().navigate(R.id.action_SecondFragment_to_NewRecipeFragment)
+            R.id.button_fragment_home_new_recipe -> {
+                findNavController().navigate(R.id.action_HomeFragment_to_NewRecipeFragment)
             }
         }
     }

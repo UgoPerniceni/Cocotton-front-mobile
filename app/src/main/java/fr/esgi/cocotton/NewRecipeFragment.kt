@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 
 /**
  * A simple [Fragment] subclass.
@@ -46,6 +47,9 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
         when(view?.id) {
             R.id.new_recipe_form_button_validate -> {
                 (activity as MainActivity?)?.addRecipe()
+            }
+            R.id.new_recipe_form_button_return -> {
+                findNavController().navigate(R.id.action_HomeFragment_to_NewRecipeFragment)
             }
         }
     }
