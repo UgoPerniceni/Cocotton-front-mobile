@@ -24,17 +24,18 @@ class SettingFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_setting, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
         spinnerLanguages = view.findViewById(R.id.spinner_language)
         spinnerThemes = view.findViewById(R.id.spinner_theme)
 
         initializeSpinners()
+
+        super.onViewCreated(view, savedInstanceState)
     }
 
     private fun initializeSpinners(){
@@ -43,38 +44,55 @@ class SettingFragment : Fragment() {
         spinnerLanguages?.apply {
             val languagesArray = resources.getStringArray(R.array.languages_array)
             val adapter: ArrayAdapter<String> = ArrayAdapter(context, android.R.layout.simple_spinner_item, languagesArray)
+            val language = sharedPreferences?.getString("language", "eng")
+
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             this.adapter = adapter
 
+            if(languagesToInteger().containsKey(language)){
+                languagesToInteger()[language]?.let  { it -> this.setSelection(it) }
+            }else {
+                this.setSelection(0)
+            }
+
             this.onItemSelectedListener = object : OnItemSelectedListener {
-                override fun onItemSelected(adapterView: AdapterView<*>?, view: View, position: Int, l: Long) {
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                     when (position) {
-                        0 -> (activity as MainActivity?)?.setLocale("eng")
-                        1 -> (activity as MainActivity?)?.setLocale("fr")
-                        2 -> (activity as MainActivity?)?.setLocale("es")
+                        0 -> (activity as MainActivity).setLocale("eng")
+                        1 -> (activity as MainActivity).setLocale("fr")
+                        2 -> (activity as MainActivity).setLocale("es")
                         else -> {}
                     }
                 }
                 override fun onNothingSelected(adapterView: AdapterView<*>?) {}
-            }
-            val language = sharedPreferences?.getString("language", "eng")
-
-            if(languagesInteger().containsKey(language)){
-                languagesInteger()[language]?.let  { it1 -> this.setSelection(it1) }
-            }else {
-                this.setSelection(1)
             }
         }
 
         spinnerThemes?.apply {
             val themesArray = resources.getStringArray(R.array.themes_array)
             val adapter: ArrayAdapter<String> = ArrayAdapter(context, android.R.layout.simple_spinner_item, themesArray)
+            val theme = sharedPreferences?.getInt("theme", 0)
+
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             this.adapter = adapter
+
+            theme?.let { this.setSelection(it) }
+
+            this.onItemSelectedListener = object : OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    when (position) {
+                        0 -> (activity as MainActivity).setThemeMode(0)
+                        1 -> (activity as MainActivity).setThemeMode(1)
+                        2 -> (activity as MainActivity).setThemeMode(2)
+                        else -> {}
+                    }
+                }
+                override fun onNothingSelected(adapterView: AdapterView<*>?) {}
+            }
         }
     }
 
-    private fun languagesInteger(): HashMap<String, Int> {
+    private fun languagesToInteger(): HashMap<String, Int> {
         val translations = hashMapOf<String, Int>()
         translations["eng"] = 0
         translations["fr"] = 1

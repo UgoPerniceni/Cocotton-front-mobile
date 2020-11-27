@@ -13,8 +13,8 @@
     </string-array>
 
     <string-array name="themes_array">
-        <item>Select theme</item>
+        <item>Light</item>
         <item>Dark</item>
-        <item>White</item>
+        <item>Depend on the time</item>
     </string-array>
 </resources>

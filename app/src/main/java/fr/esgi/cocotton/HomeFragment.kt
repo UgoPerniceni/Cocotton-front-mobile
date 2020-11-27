@@ -44,7 +44,12 @@ class HomeFragment : Fragment(), View.OnClickListener {
         val recipes = mutableListOf<Recipe>()
         val db = Firebase.firestore
 
-        (activity as MainActivity?)?.showLoader()
+        recyclerView?.apply {
+            layoutManager = LinearLayoutManager(this.context)
+            adapter = MyAdapter(recipes)
+        }
+
+        (activity as MainActivity).showLoader()
 
         db.collection("recipes")
             .get()
@@ -66,13 +71,10 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
             .addOnCompleteListener {
                 recyclerView?.apply {
-                    layoutManager = LinearLayoutManager(this.context)
-                    adapter = MyAdapter(recipes)
-
                     this.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
                 }
 
-                (activity as MainActivity?)?.hideLoader()
+                (activity as MainActivity).hideLoader()
             }
     }
 

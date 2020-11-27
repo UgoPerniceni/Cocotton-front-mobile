@@ -21,4 +21,5 @@
     <string name="first_fragment_label">Primer fragmento</string>
     <string name="second_fragment_label">Segundo fragmento</string>
     <string name="login">Acceso</string>
+    <string name="action_themes">Temas</string>
 </resources>

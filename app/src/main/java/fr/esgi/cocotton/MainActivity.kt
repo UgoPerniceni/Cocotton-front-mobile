@@ -1,8 +1,10 @@
 package fr.esgi.cocotton
 
 import android.app.Activity
+import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.AttributeSet
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -10,7 +12,9 @@ import android.view.View
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Spinner
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.isVisible
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -31,10 +35,10 @@ class MainActivity : AppCompatActivity() {
 
         loadLocate()
 
-        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
+/*        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
-        }
+        }*/
 
         loader = findViewById(R.id.loader)
         fadeScreen = findViewById(R.id.fadeScreen)
@@ -53,14 +57,7 @@ class MainActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> {
-
-                /*
-                val fragment = SettingFragment()
-                supportFragmentManager
-                        .beginTransaction()
-                        .replace(R.id.content_main, fragment)
-                        .commit()*/
-
+                // TODO()
                 return true
             }
             else -> super.onOptionsItemSelected(item)
@@ -114,6 +111,33 @@ class MainActivity : AppCompatActivity() {
     private fun loadLocate(){
         val sharedPreferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE)
         val language = sharedPreferences.getString("language", "eng")
+        val theme = sharedPreferences.getInt("theme", 0)
+
+        setThemeMode(theme)
         language?.let { setLocale(it) }
+    }
+
+    fun setThemeMode(choice: Int) {
+        val editor = getSharedPreferences("Settings", Activity.MODE_PRIVATE).edit()
+        when (choice) {
+            0 -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                delegate.applyDayNight()
+
+                editor.putInt("theme", 0).apply()
+            }
+            1 -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                delegate.applyDayNight()
+
+                editor.putInt("theme", 1).apply()
+            }
+            2 -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                delegate.applyDayNight()
+
+                editor.putInt("theme", 2).apply()
+            }
+        }
     }
 }
