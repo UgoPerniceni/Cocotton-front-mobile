@@ -1,7 +1,6 @@
 package fr.esgi.cocotton
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +19,8 @@ import fr.esgi.cocotton.model.Recipe
 class NewRecipeFragment : Fragment(), View.OnClickListener {
 
     private var spinner: Spinner? = null
+    private var pickerHours: NumberPicker? = null
+    private var pickerMinutes: NumberPicker? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -34,6 +35,8 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
         view.findViewById<Button>(R.id.new_recipe_form_button_validate).setOnClickListener(this)
 
         spinner = view.findViewById(R.id.new_recipe_form_spinner_difficulty)
+        pickerHours = view.findViewById(R.id.new_recipe_form_number_picker_hours)
+        pickerMinutes = view.findViewById(R.id.new_recipe_form_number_picker_minutes)
 
         spinner?.apply {
             val difficultiesArray = resources.getStringArray(R.array.difficulty_array)
@@ -41,6 +44,16 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
 
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             this.adapter = adapter
+        }
+
+        pickerHours?.apply {
+            this.minValue = 0
+            this.maxValue = 168
+        }
+
+        pickerMinutes?.apply {
+            this.minValue = 0
+            this.maxValue = 60
         }
     }
 
@@ -57,11 +70,13 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
 
     private fun createNewRecipe(){
         val name = view?.findViewById<EditText>(R.id.new_recipe_form_name)
-        val time = view?.findViewById<EditText>(R.id.new_recipe_form_time)
         val forPerson = view?.findViewById<EditText>(R.id.new_recipe_form_for_number)
         val difficulty = view?.findViewById<Spinner>(R.id.new_recipe_form_spinner_difficulty)
+        val hours = pickerHours?.value?.times(60)
+        val minutes = pickerMinutes?.value
+        val time = minutes?.let { hours?.plus(it) }
 
-        val newRecipe = Recipe("${name?.text}", "${time?.text}", ("${forPerson?.text}").toLong(), "${difficulty?.selectedItem}", "/path")
+        val newRecipe = Recipe("${name?.text}", time?.toLong(), ("${forPerson?.text}").toLong(), "${difficulty?.selectedItem}", "/path")
 
         newRecipe.saveToDb()
     }

@@ -6,7 +6,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 @Entity
-data class Recipe(val name: String, val time: String  =  "", val forPerson: Long =  0, val difficulty: String  =  "", val image: String = "") {
+data class Recipe(val name: String, val time: Long? =  0, val forPerson: Long =  0, val difficulty: String  =  "", val image: String = "") {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
 
