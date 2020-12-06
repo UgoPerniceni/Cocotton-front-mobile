@@ -63,18 +63,7 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
 
         val newRecipe = Recipe("${name?.text}", "${time?.text}", ("${forPerson?.text}").toLong(), "${difficulty?.selectedItem}", "/path")
 
-        // Access a Cloud Firestore instance from your Activity
-        val db = Firebase.firestore
-
-        // Add a new document with a generated ID
-        db.collection("recipes")
-                .add(newRecipe)
-                .addOnSuccessListener { documentReference ->
-                    Log.d("onSuccess", "DocumentSnapshot added with ID: ${documentReference.id}")
-                }
-                .addOnFailureListener { e ->
-                    Log.w("onFailure", "Error adding document", e)
-                }
+        newRecipe.saveToDb()
     }
 
     companion object {

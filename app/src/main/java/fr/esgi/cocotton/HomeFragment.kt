@@ -67,7 +67,6 @@ class HomeFragment : Fragment(), View.OnClickListener {
             .addOnFailureListener { exception ->
                 Log.w("failure", "Error getting documents.", exception)
             }
-
             .addOnCompleteListener {
                 recyclerView?.apply {
                     this.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
