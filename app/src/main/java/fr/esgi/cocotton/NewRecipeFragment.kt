@@ -1,15 +1,16 @@
 package fr.esgi.cocotton
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.Spinner
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import fr.esgi.cocotton.model.Recipe
 
 /**
  * A simple [Fragment] subclass.
@@ -46,12 +47,34 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
     override fun onClick(view: View?) {
         when(view?.id) {
             R.id.new_recipe_form_button_validate -> {
-                (activity as MainActivity?)?.addRecipe()
+                createNewRecipe()
             }
             R.id.new_recipe_form_button_return -> {
                 findNavController().navigate(R.id.action_HomeFragment_to_NewRecipeFragment)
             }
         }
+    }
+
+    private fun createNewRecipe(){
+        val name = view?.findViewById<EditText>(R.id.new_recipe_form_name)
+        val time = view?.findViewById<EditText>(R.id.new_recipe_form_time)
+        val forPerson = view?.findViewById<EditText>(R.id.new_recipe_form_for_number)
+        val difficulty = view?.findViewById<Spinner>(R.id.new_recipe_form_spinner_difficulty)
+
+        val newRecipe = Recipe("${name?.text}", "${time?.text}", ("${forPerson?.text}").toLong(), "${difficulty?.selectedItem}", "/path")
+
+        // Access a Cloud Firestore instance from your Activity
+        val db = Firebase.firestore
+
+        // Add a new document with a generated ID
+        db.collection("recipes")
+                .add(newRecipe)
+                .addOnSuccessListener { documentReference ->
+                    Log.d("onSuccess", "DocumentSnapshot added with ID: ${documentReference.id}")
+                }
+                .addOnFailureListener { e ->
+                    Log.w("onFailure", "Error adding document", e)
+                }
     }
 
     companion object {
