@@ -57,7 +57,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
                     Log.d("--- success ---", "${document.id} => ${document.data}")
                     recipes.add(Recipe(
                                     document.data["name"] as String,
-                                    document.data["time"] as String,
+                                    document.data["time"] as Long,
                                     document.data["forPerson"] as Long,
                                     document.data["difficulty"] as String,
                                     document.data["image"] as String)
@@ -67,7 +67,6 @@ class HomeFragment : Fragment(), View.OnClickListener {
             .addOnFailureListener { exception ->
                 Log.w("failure", "Error getting documents.", exception)
             }
-
             .addOnCompleteListener {
                 recyclerView?.apply {
                     this.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
