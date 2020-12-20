@@ -2,10 +2,8 @@ package fr.esgi.cocotton
 
 import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
-import android.os.Handler
 import android.util.AttributeSet
 import android.util.Log
 import android.view.Menu
@@ -20,7 +18,6 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.isVisible
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import fr.esgi.cocotton.model.Recipe
@@ -28,7 +25,6 @@ import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var mAuth: FirebaseAuth
     private var loader: ProgressBar? = null
     private var fadeScreen: View? = null
 
@@ -36,16 +32,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
-
-        mAuth = FirebaseAuth.getInstance()
-        val user = mAuth.currentUser
-
-        Handler().postDelayed({
-            if(user == null){
-                val signInIntent = Intent(this, SignInActivity::class.java)
-                startActivity(signInIntent)
-            }
-        }, 2000)
 
         loadLocate()
 
