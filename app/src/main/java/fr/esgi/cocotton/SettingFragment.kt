@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 
 
 /**
@@ -17,7 +19,7 @@ import androidx.fragment.app.Fragment
  * Use the [SettingFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class SettingFragment : Fragment() {
+class SettingFragment : Fragment(), View.OnClickListener {
 
     private var spinnerLanguages: Spinner? = null
     private var spinnerThemes: Spinner? = null
@@ -30,12 +32,14 @@ class SettingFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         spinnerLanguages = view.findViewById(R.id.spinner_language)
         spinnerThemes = view.findViewById(R.id.spinner_theme)
 
-        initializeSpinners()
+        view.findViewById<Button>(R.id.button_fragment_setting_disconnect).setOnClickListener(this)
 
-        super.onViewCreated(view, savedInstanceState)
+        initializeSpinners()
     }
 
     private fun initializeSpinners(){
@@ -99,6 +103,21 @@ class SettingFragment : Fragment() {
         translations["es"] = 2
 
         return translations
+    }
+
+    private fun disconnect(){
+        (activity as MainActivity).mAuth.signOut()
+        (activity as MainActivity).googleSignClient.signOut()
+
+        findNavController().navigate(R.id.action_SettingFragment_to_LoginFragment)
+    }
+
+    override fun onClick(view: View?) {
+        when(view?.id){
+            R.id.button_fragment_setting_disconnect -> {
+                disconnect()
+            }
+        }
     }
 
     companion object {

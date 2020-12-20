@@ -1,32 +1,37 @@
 package fr.esgi.cocotton
 
 import android.app.Activity
-import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
-import android.util.AttributeSet
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.EditText
 import android.widget.ProgressBar
-import android.widget.Spinner
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.isVisible
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import fr.esgi.cocotton.model.Recipe
 import java.util.*
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        private const val RC_SIGN_IN = 123
+    }
+
     private var loader: ProgressBar? = null
     private var fadeScreen: View? = null
+
+    lateinit var mAuth: FirebaseAuth
+    lateinit var googleSignClient: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +47,51 @@ class MainActivity : AppCompatActivity() {
 
         loader = findViewById(R.id.loader)
         fadeScreen = findViewById(R.id.fadeScreen)
+
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build()
+        googleSignClient = GoogleSignIn.getClient(this, gso)
+
+        mAuth = FirebaseAuth.getInstance()
     }
+
+    fun signIn() {
+        val signInIntent = googleSignClient.signInIntent
+        startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == RC_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            val exception = task.exception
+            if(task.isSuccessful){
+                try {
+                    val account = task.getResult(ApiException::class.java)!!
+                    Log.d("SignInActivity", "firebaseAuthWithGoogle" + account.id)
+                    firebaseAuthWithGoogle(account.idToken!!)
+                } catch (e: ApiException) {
+                    Log.w("SignInActivity", "Google sign in failed", e)
+                }
+            } else {
+                Log.w("SignInActivity", exception.toString())
+            }
+        }
+    }
+
+    private fun firebaseAuthWithGoogle(idToken: String) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        mAuth.signInWithCredential(credential).addOnCompleteListener(this) {
+                task ->
+            if(task.isSuccessful) {
+                Log.d("SignInActivity", "signInWithCredential:success")
+            } else {
+                Log.d("SignInActivity", "signInWithCredential:failure")
+            }
+        }
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.

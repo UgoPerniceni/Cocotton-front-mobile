@@ -27,5 +27,6 @@
     <string name="validate">Valider</string>
 
     <string name="login">Connection</string>
+    <string name="disconnect">Se déconnecter</string>
     <string name="action_themes">Thèmes</string>
 </resources>
