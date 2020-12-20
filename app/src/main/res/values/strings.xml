@@ -27,6 +27,7 @@
     <string name="validate">Validate</string>
 
     <string name="login">Login</string>
+    <string name="disconnect">Disconnect</string>
 
     <string name="display_time" translatable="false">Hello, %1$s! You have %2$d new messages</string>
 

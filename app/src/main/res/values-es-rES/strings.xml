@@ -27,5 +27,6 @@
 
     <string name="second_fragment_label">Segundo fragmento</string>
     <string name="login">Acceso</string>
+    <string name="disconnect">Desconectarse</string>
     <string name="action_themes">Temas</string>
 </resources>

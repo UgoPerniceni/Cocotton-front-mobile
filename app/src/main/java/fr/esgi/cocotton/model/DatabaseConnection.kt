@@ -6,11 +6,10 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class DatabaseConnection {
-    val db: FirebaseFirestore
+    val db: FirebaseFirestore = Firebase.firestore
 
     init {
         // Access a Cloud Firestore instance
-        db = Firebase.firestore
     }
 
     fun save(collection: String, obj: Any){
