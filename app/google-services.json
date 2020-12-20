@@ -15,14 +15,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "115322434116-trf1kmft3nnorbb3snbu9s4jhgn3j92f.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "fr.esgi.cocotton",
-            "certificate_hash": "eddaba44c14eb00ae59f92840681d793c4f0757d"
-          }
-        },
-        {
           "client_id": "115322434116-lgou7jll60iabtsgls7cbqpn7ps4us4e.apps.googleusercontent.com",
           "client_type": 3
         }
