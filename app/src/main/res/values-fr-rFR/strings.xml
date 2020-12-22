@@ -29,4 +29,17 @@
     <string name="login">Connection</string>
     <string name="disconnect">Se déconnecter</string>
     <string name="action_themes">Thèmes</string>
+
+    <string name="hour">hour</string>
+    <string name="minute">minute</string>
+
+    <plurals name="countHours">
+        <item quantity="one">heure</item>
+        <item quantity="other">heures</item>
+    </plurals>
+
+    <plurals name="countMinutes">
+        <item quantity="one">minute</item>
+        <item quantity="other">minutes</item>
+    </plurals>
 </resources>

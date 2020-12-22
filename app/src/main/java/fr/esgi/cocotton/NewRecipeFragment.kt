@@ -7,9 +7,8 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import fr.esgi.cocotton.model.Recipe
+import org.w3c.dom.Text
 
 /**
  * A simple [Fragment] subclass.
@@ -21,6 +20,9 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
     private var spinner: Spinner? = null
     private var pickerHours: NumberPicker? = null
     private var pickerMinutes: NumberPicker? = null
+
+    private var textViewHours: TextView? = null;
+    private var textViewMinutes: TextView? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -38,6 +40,9 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
         pickerHours = view.findViewById(R.id.new_recipe_form_number_picker_hours)
         pickerMinutes = view.findViewById(R.id.new_recipe_form_number_picker_minutes)
 
+        textViewHours = view.findViewById(R.id.new_recipe_text_view_hours)
+        textViewMinutes = view.findViewById(R.id.new_recipe_text_view_minutes)
+
         spinner?.apply {
             val difficultiesArray = resources.getStringArray(R.array.difficulty_array)
             val adapter: ArrayAdapter<String> = ArrayAdapter(context, android.R.layout.simple_spinner_item, difficultiesArray)
@@ -49,12 +54,30 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
         pickerHours?.apply {
             this.minValue = 0
             this.maxValue = 168
+
+            this.setOnValueChangedListener { _, _, newVal ->
+                setUpTextHours(newVal)
+            }
         }
 
         pickerMinutes?.apply {
             this.minValue = 0
             this.maxValue = 60
+
+            this.setOnValueChangedListener { _, _, newVal ->
+                setUpTextMinutes(newVal)
+            }
         }
+    }
+
+    private fun setUpTextHours(counter: Int) {
+        val itemsFound = resources.getQuantityString(R.plurals.countHours, counter, counter)
+        textViewHours?.apply { text = itemsFound }
+    }
+
+    private fun setUpTextMinutes(counter: Int) {
+        val itemsFound = resources.getQuantityString(R.plurals.countMinutes, counter, counter)
+        textViewMinutes?.apply { text = itemsFound }
     }
 
     override fun onClick(view: View?) {

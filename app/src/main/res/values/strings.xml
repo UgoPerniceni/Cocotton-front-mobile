@@ -31,4 +31,17 @@
 
     <string name="display_time" translatable="false">Hello, %1$s! You have %2$d new messages</string>
 
+    <string name="hour">hour</string>
+    <string name="minute">minute</string>
+
+    <plurals name="countHours">
+        <item quantity="one">hour</item>
+        <item quantity="other">hours</item>
+    </plurals>
+
+    <plurals name="countMinutes">
+        <item quantity="one">minute</item>
+        <item quantity="other">minutes</item>
+    </plurals>
+
 </resources>
