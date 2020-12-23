@@ -35,7 +35,6 @@ class HomeFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<Button>(R.id.button_fragment_home_settings).setOnClickListener(this)
         view.findViewById<Button>(R.id.button_fragment_home_new_recipe).setOnClickListener(this)
 
         recyclerView = view.findViewById(R.id.recyclerView_recipes)
@@ -78,9 +77,6 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(view: View?) {
         when(view?.id){
-            R.id.button_fragment_home_settings -> {
-                findNavController().navigate(R.id.action_HomeFragment_to_SettingFragment)
-            }
             R.id.button_fragment_home_new_recipe -> {
                 findNavController().navigate(R.id.action_HomeFragment_to_NewRecipeFragment)
             }

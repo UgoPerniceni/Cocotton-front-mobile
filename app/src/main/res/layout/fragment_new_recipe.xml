@@ -154,7 +154,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:text="@string/navigation_previous"
+        android:text="@string/navigation_return"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/new_recipe_form_button_validate"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_new_recipe_start"
