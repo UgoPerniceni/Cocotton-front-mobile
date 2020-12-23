@@ -12,6 +12,7 @@ import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.isVisible
+import androidx.navigation.findNavController
 import java.util.*
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -32,6 +33,8 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var mAuth: FirebaseAuth
     lateinit var googleSignClient: GoogleSignInClient
+
+    lateinit var mOptionsMenu: Menu
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,8 +98,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
+        mOptionsMenu = menu
 
+        menuInflater.inflate(R.menu.menu_main, menu)
+/*
+        menu.getItem(0).isEnabled = false*/
         return true
     }
 
@@ -106,7 +112,9 @@ class MainActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> {
-                // TODO()
+                val navController = findNavController(R.id.nav_host_fragment)
+
+                navController.navigate(R.id.SettingFragment)
                 return true
             }
             else -> super.onOptionsItemSelected(item)

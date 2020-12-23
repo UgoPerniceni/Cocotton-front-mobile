@@ -32,7 +32,16 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/Theme.Cocotton.PopupOverlay"
-            />
+            >
+
+<!--            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cocotton"
+                android:id="@+id/toolbar_title" />-->
+
+        </androidx.appcompat.widget.Toolbar>
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <fragment

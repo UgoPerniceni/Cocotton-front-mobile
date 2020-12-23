@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_login">
 
         <action
-            android:id="@+id/action_LoginFragment_to_SecondFragment"
+            android:id="@+id/action_LoginFragment_to_HomeFragment"
             app:destination="@id/HomeFragment" />
 
     </fragment>
