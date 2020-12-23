@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="difficulty_array">
-        <item>Facile</item>
-        <item>Moyen</item>
-        <item>Difficile</item>
+        <item>@string/easy</item>
+        <item>@string/medium</item>
+        <item>@string/hard</item>
     </string-array>
 
     <string-array name="languages_array">
@@ -13,8 +13,8 @@
     </string-array>
 
     <string-array name="themes_array">
-        <item>Light</item>
-        <item>Dark</item>
-        <item>Depend on the time</item>
+        <item>@string/light</item>
+        <item>@string/dark</item>
+        <item>@string/depend</item>
     </string-array>
 </resources>

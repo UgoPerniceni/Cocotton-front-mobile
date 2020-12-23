@@ -40,6 +40,7 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         view.findViewById<Button>(R.id.new_recipe_form_button_validate).setOnClickListener(this)
+        view.findViewById<Button>(R.id.new_recipe_form_button_return).setOnClickListener(this)
 
         spinner = view.findViewById(R.id.new_recipe_form_spinner_difficulty)
         pickerHours = view.findViewById(R.id.new_recipe_form_number_picker_hours)
@@ -106,7 +107,7 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
                 createNewRecipe()
             }
             R.id.new_recipe_form_button_return -> {
-                findNavController().navigate(R.id.action_HomeFragment_to_NewRecipeFragment)
+                findNavController().navigate(R.id.action_NewRecipeFragment_to_HomeFragment)
             }
         }
     }

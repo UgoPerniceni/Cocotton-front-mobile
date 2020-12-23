@@ -30,10 +30,10 @@
     <string name="disconnect">Desconectarse</string>
     <string name="action_themes">Temas</string>
 
-
     <string name="hour">hora</string>
     <string name="minute">minuto</string>
 
+    <!-- Plurals -->
     <plurals name="countHours">
         <item quantity="one">hora</item>
         <item quantity="other">horas</item>
@@ -43,4 +43,13 @@
         <item quantity="one">minuto</item>
         <item quantity="other">minutos</item>
     </plurals>
+
+    <!-- Arrays translations -->
+    <string name="easy">Fácil</string>
+    <string name="medium">Mediano</string>
+    <string name="hard">Duro</string>
+
+    <string name="light">Claro</string>
+    <string name="dark">Oscuro</string>
+    <string name="depend">Depende del tiempo</string>
 </resources>

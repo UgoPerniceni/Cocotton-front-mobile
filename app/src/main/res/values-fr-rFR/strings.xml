@@ -33,6 +33,7 @@
     <string name="hour">hour</string>
     <string name="minute">minute</string>
 
+    <!-- Plurals -->
     <plurals name="countHours">
         <item quantity="one">heure</item>
         <item quantity="other">heures</item>
@@ -42,4 +43,13 @@
         <item quantity="one">minute</item>
         <item quantity="other">minutes</item>
     </plurals>
+
+    <!-- Arrays translations -->
+    <string name="easy">Facile</string>
+    <string name="medium">Moyen</string>
+    <string name="hard">Difficile</string>
+
+    <string name="light">Clair</string>
+    <string name="dark">Sombre</string>
+    <string name="depend">Depend du temps</string>
 </resources>

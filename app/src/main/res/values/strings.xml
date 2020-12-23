@@ -29,11 +29,10 @@
     <string name="login">Login</string>
     <string name="disconnect">Disconnect</string>
 
-    <string name="display_time" translatable="false">Hello, %1$s! You have %2$d new messages</string>
-
     <string name="hour">hour</string>
     <string name="minute">minute</string>
 
+    <!-- Plurals -->
     <plurals name="countHours">
         <item quantity="one">hour</item>
         <item quantity="other">hours</item>
@@ -43,5 +42,14 @@
         <item quantity="one">minute</item>
         <item quantity="other">minutes</item>
     </plurals>
+
+    <!-- Arrays translations -->
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
+
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+    <string name="depend">Depend on the time</string>
 
 </resources>
