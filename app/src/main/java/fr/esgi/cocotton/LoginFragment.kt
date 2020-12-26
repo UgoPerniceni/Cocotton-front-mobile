@@ -1,6 +1,7 @@
 package fr.esgi.cocotton
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Button
 import android.widget.Toast
@@ -41,10 +42,24 @@ class LoginFragment : Fragment(), View.OnClickListener {
     override fun onClick(view: View?) {
         when(view?.id){
             R.id.button_first -> {
-
                 val user : FirebaseUser? = (activity as MainActivity).mAuth.currentUser
 
-                user.let { Toast.makeText(context, "Connected as : $user", Toast.LENGTH_SHORT).show() }
+                user?.let {
+                    for (profile in it.providerData) {
+                        // Id of the provider (ex: google.com)
+                        val providerId = profile.providerId
+
+                        // UID specific to the provider
+                        //val uid = profile.uid
+
+                        // Name, email address, and profile photo Url
+                        val name = profile.displayName
+                        val email = profile.email
+                        // val photoUrl = profile.photoUrl
+
+                        Toast.makeText(context, "Connected as : $name, $email on $providerId", Toast.LENGTH_SHORT).show()
+                    }
+                }
 
                 if(user != null){
                     findNavController().navigate(R.id.action_LoginFragment_to_HomeFragment)

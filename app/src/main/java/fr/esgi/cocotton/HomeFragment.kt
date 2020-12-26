@@ -54,12 +54,16 @@ class HomeFragment : Fragment(), View.OnClickListener {
             .addOnSuccessListener { result ->
                 for (document in result) {
                     Log.d("--- success ---", "${document.id} => ${document.data}")
-                    recipes.add(Recipe(
-                                    document.data["name"] as String,
-                                    document.data["time"] as Long,
-                                    document.data["forPerson"] as Long,
-                                    document.data["difficulty"] as String,
-                                    document.data["image"] as String)
+                    recipes.add(
+                            Recipe(
+                                document.data["name"] as String,
+                                document.data["time"] as Long,
+                                document.data["forPerson"] as Long,
+                                document.data["difficulty"] as String,
+                                document.data["image"] as String,
+                                document.data["authorDisplayName"] as String,
+                                document.data["authorEmail"] as String
+                            )
                     )
                 }
             }

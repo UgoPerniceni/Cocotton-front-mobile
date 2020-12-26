@@ -1,16 +1,11 @@
 package fr.esgi.cocotton
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Button
 import android.widget.TextView
-import fr.esgi.cocotton.model.Recipe
-
-private const val ARG_id = "id"
+import androidx.fragment.app.Fragment
 
 /**
  * A simple [Fragment] subclass.
@@ -18,16 +13,11 @@ private const val ARG_id = "id"
  * create an instance of this fragment.
  */
 class RecipeFragment : Fragment() {
-    private var param1: String? = null
 
-    private var textView: TextView? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_id)
-        }
-    }
+    private var textViewTitle: TextView? = null
+    private var textViewAuthor: TextView? = null
+    private var textViewDifficulty: TextView? = null
+    private var textViewTimeRequired: TextView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,20 +30,23 @@ class RecipeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        textView = view.findViewById(R.id.recipe_text_view)
+        textViewTitle = view.findViewById(R.id.recipe_text_view_title)
+        textViewAuthor = view.findViewById(R.id.recipe_text_view_author)
+        textViewDifficulty = view.findViewById(R.id.recipe_text_view_difficulty)
+        textViewTimeRequired = view.findViewById(R.id.recipe_text_view_time_required)
 
-        textView?.apply {
+        textViewTitle?.apply {
             this.text = arguments?.getString("name")
         }
-    }
+        textViewAuthor?.apply {
+            this.text = arguments?.getString("author")
+        }
+        textViewDifficulty?.apply {
+            this.text = arguments?.getString("difficulty")
+        }
+        textViewTimeRequired?.apply {
+            this.text = arguments?.getString("timeRequired")
+        }
 
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String) =
-            RecipeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_id, param1)
-                }
-            }
     }
 }

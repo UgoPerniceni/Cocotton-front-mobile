@@ -31,8 +31,10 @@ class MyAdapter(private val recipes: List<Recipe>) : RecyclerView.Adapter<Recipe
             Toast.makeText(view.context, position.toString(), Toast.LENGTH_SHORT).show()
 
             val bundle = bundleOf(
-                "name" to recipe.name,
-                "difficulty" to recipe.difficulty
+                    "name" to recipe.name,
+                    "author" to "Created by : ${recipe.authorDisplayName}",
+                    "difficulty" to "Difficulty : ${recipe.difficulty}",
+                    "timeRequired" to "Time required : ${recipe.time}"
             )
 
             view.findNavController().navigate(R.id.action_HomeFragment_to_RecipeFragment, bundle)

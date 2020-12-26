@@ -4,12 +4,16 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import fr.esgi.cocotton.model.Recipe
 
 /**
@@ -134,15 +138,18 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
 
     private fun createNewRecipe(){
         if(formIsValid()){
+            val userConnected : FirebaseUser? = (activity as MainActivity).mAuth.currentUser
+
             val name = view?.findViewById<EditText>(R.id.new_recipe_form_name)
             val forPerson = view?.findViewById<EditText>(R.id.new_recipe_form_for_number)
             val difficulty = view?.findViewById<Spinner>(R.id.new_recipe_form_spinner_difficulty)
             val hours = pickerHours?.value?.times(60)
             val minutes = pickerMinutes?.value
             val time = minutes?.let { hours?.plus(it) }
+            val authorDN = userConnected?.displayName
+            val authorEmail = userConnected?.email
 
-            val newRecipe = Recipe("${name?.text}", time?.toLong(), ("${forPerson?.text}").toLong(), "${difficulty?.selectedItem}", "/path")
-
+            val newRecipe = Recipe("${name?.text}", time?.toLong(), ("${forPerson?.text}").toLong(), "${difficulty?.selectedItem}", "/path", "$authorDN",  "$authorEmail")
             newRecipe.saveToDb()
 
             findNavController().navigate(R.id.action_NewRecipeFragment_to_HomeFragment)

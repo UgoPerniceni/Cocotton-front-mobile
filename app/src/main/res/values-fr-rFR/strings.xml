@@ -52,4 +52,6 @@
     <string name="light">Clair</string>
     <string name="dark">Sombre</string>
     <string name="depend">Depend du temps</string>
+
+    <string name="author">author</string>
 </resources>
