@@ -33,6 +33,10 @@
         <action
             android:id="@+id/action_HomeFragment_to_NewRecipeFragment"
             app:destination="@id/NewRecipeFragment" />
+
+        <action
+            android:id="@+id/action_HomeFragment_to_RecipeFragment"
+            app:destination="@id/RecipeFragment" />
     </fragment>
 
     <fragment
@@ -59,5 +63,12 @@
         <action
             android:id="@+id/action_NewRecipeFragment_to_HomeFragment"
             app:destination="@id/HomeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/RecipeFragment"
+        android:name="fr.esgi.cocotton.RecipeFragment"
+        android:label="recipe"
+        tools:layout="@layout/fragment_recipe">
     </fragment>
 </navigation>
