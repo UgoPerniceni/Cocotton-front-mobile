@@ -57,7 +57,10 @@ class LoginFragment : Fragment(), View.OnClickListener {
                         val email = profile.email
                         // val photoUrl = profile.photoUrl
 
-                        Toast.makeText(context, "Connected as : $name, $email on $providerId", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context,
+                                "Connected as : $name\n" +
+                                "with : $email\n" +
+                                        "on $providerId", Toast.LENGTH_SHORT).show()
                     }
                 }
 

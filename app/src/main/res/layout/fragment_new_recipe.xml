@@ -136,10 +136,55 @@
         android:inputType="number"
 
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_new_recipe"
+        app:layout_constraintBottom_toTopOf="@+id/new_recipe_form_text_view_recipes"
         app:layout_constraintEnd_toEndOf="@+id/guideline_vertical_new_recipe_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_new_recipe_start"
         app:layout_constraintTop_toBottomOf="@+id/new_recipe_form_spinner_difficulty" />
+
+
+    <TextView
+        android:id="@+id/new_recipe_form_text_view_recipes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:textSize="25sp"
+        android:text="Ingrédients"
+
+        app:layout_constraintBottom_toTopOf="@+id/new_recipe_form_linear_layout_recipe"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_vertical_new_recipe_end"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_new_recipe_start"
+        app:layout_constraintTop_toBottomOf="@+id/new_recipe_form_for_number"
+         />
+
+    <LinearLayout
+        android:id="@+id/new_recipe_form_linear_layout_recipe"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical"
+        android:gravity="center"
+
+        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_new_recipe"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_vertical_new_recipe_end"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_new_recipe_start"
+        app:layout_constraintTop_toBottomOf="@+id/new_recipe_form_text_view_recipes" >
+
+        <EditText
+            android:id="@+id/new_recipe_form_edit_text_create"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Add recipe"
+
+            android:textAlignment="center"
+            android:autofillHints=""
+            android:inputType="text" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ajouter"
+            />
+    </LinearLayout>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_horizontal_new_recipe"

@@ -90,6 +90,7 @@ class MainActivity : AppCompatActivity(){
         mAuth.signInWithCredential(credential).addOnCompleteListener(this) {
                 task ->
             if(task.isSuccessful) {
+                Toast.makeText(this, "You have been successfully authenticated.\nPlease click on log in.", Toast.LENGTH_SHORT).show()
                 Log.d("SignInActivity", "signInWithCredential:success")
             } else {
                 Log.d("SignInActivity", "signInWithCredential:failure")
