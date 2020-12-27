@@ -4,16 +4,19 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import fr.esgi.cocotton.adapter.IngredientAdapter
+import fr.esgi.cocotton.model.Ingredient
 import fr.esgi.cocotton.model.Recipe
 
 /**
@@ -24,6 +27,7 @@ import fr.esgi.cocotton.model.Recipe
 class NewRecipeFragment : Fragment(), View.OnClickListener {
 
     private var spinner: Spinner? = null
+
     private var pickerHours: NumberPicker? = null
     private var pickerMinutes: NumberPicker? = null
 
@@ -32,6 +36,11 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
 
     private var editTextName: EditText? = null
     private var editTextPerson: EditText? = null
+    private var editTextIngredient: EditText? = null
+
+    private var recyclerView: RecyclerView? = null
+
+    private val ingredients = mutableListOf<Ingredient>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -43,18 +52,7 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<Button>(R.id.new_recipe_form_button_validate).setOnClickListener(this)
-        view.findViewById<Button>(R.id.new_recipe_form_button_return).setOnClickListener(this)
-
-        spinner = view.findViewById(R.id.new_recipe_form_spinner_difficulty)
-        pickerHours = view.findViewById(R.id.new_recipe_form_number_picker_hours)
-        pickerMinutes = view.findViewById(R.id.new_recipe_form_number_picker_minutes)
-
-        textViewHours = view.findViewById(R.id.new_recipe_text_view_hours)
-        textViewMinutes = view.findViewById(R.id.new_recipe_text_view_minutes)
-
-        editTextName = view.findViewById(R.id.new_recipe_form_name)
-        editTextPerson = view.findViewById(R.id.new_recipe_form_for_number)
+        initialize(view)
 
         spinner?.apply {
             val difficultiesArray = resources.getStringArray(R.array.difficulty_array)
@@ -92,7 +90,43 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
+    }
 
+    private fun initialize(view: View){
+        setViewByIds(view)
+        setOnClickListeners(view)
+
+        setRecycleView(view)
+    }
+
+    private fun setRecycleView(view: View){
+        recyclerView = view.findViewById(R.id.new_recipe_form_recycle_view)
+
+        recyclerView?.apply {
+            layoutManager = LinearLayoutManager(this.context)
+            adapter = IngredientAdapter(ingredients)
+
+            addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+        }
+    }
+
+    private fun setViewByIds(view: View){
+        spinner = view.findViewById(R.id.new_recipe_form_spinner_difficulty)
+        pickerHours = view.findViewById(R.id.new_recipe_form_number_picker_hours)
+        pickerMinutes = view.findViewById(R.id.new_recipe_form_number_picker_minutes)
+
+        textViewHours = view.findViewById(R.id.new_recipe_text_view_hours)
+        textViewMinutes = view.findViewById(R.id.new_recipe_text_view_minutes)
+
+        editTextName = view.findViewById(R.id.new_recipe_form_name)
+        editTextPerson = view.findViewById(R.id.new_recipe_form_for_number)
+        editTextIngredient = view.findViewById(R.id.new_recipe_form_edit_text_create)
+    }
+
+    private fun setOnClickListeners(view: View){
+        view.findViewById<Button>(R.id.new_recipe_form_button_add_ingredient).setOnClickListener(this)
+        view.findViewById<Button>(R.id.new_recipe_form_button_validate).setOnClickListener(this)
+        view.findViewById<Button>(R.id.new_recipe_form_button_return).setOnClickListener(this)
     }
 
     private fun setUpTextHours(counter: Int) {
@@ -103,17 +137,6 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
     private fun setUpTextMinutes(counter: Int) {
         val itemsFound = resources.getQuantityString(R.plurals.countMinutes, counter, counter)
         textViewMinutes?.apply { text = itemsFound }
-    }
-
-    override fun onClick(view: View?) {
-        when(view?.id) {
-            R.id.new_recipe_form_button_validate -> {
-                createNewRecipe()
-            }
-            R.id.new_recipe_form_button_return -> {
-                findNavController().navigate(R.id.action_NewRecipeFragment_to_HomeFragment)
-            }
-        }
     }
 
     private fun formIsValid(): Boolean {
@@ -146,16 +169,43 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
             val hours = pickerHours?.value?.times(60)
             val minutes = pickerMinutes?.value
             val time = minutes?.let { hours?.plus(it) }
+            val ingredients: List<Ingredient> = ingredients
+
             val authorDN = userConnected?.displayName
             val authorEmail = userConnected?.email
 
-            val newRecipe = Recipe("${name?.text}", time?.toLong(), ("${forPerson?.text}").toLong(), "${difficulty?.selectedItem}", "/path", "$authorDN",  "$authorEmail")
+            val newRecipe = Recipe("${name?.text}", time?.toLong(), ("${forPerson?.text}").toLong(), "${difficulty?.selectedItem}", "/path", ingredients,"$authorDN",  "$authorEmail")
             newRecipe.saveToDb()
 
             findNavController().navigate(R.id.action_NewRecipeFragment_to_HomeFragment)
 
         }else{
             Toast.makeText(context, "Remplir les champs svp", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun createNewIngredient(){
+        editTextIngredient?.let {
+            if(TextUtils.isEmpty(it.text.toString())){
+                it.error = "Veuillez remplir ce champ (3 char+)"
+            }else{
+                ingredients.add(Ingredient(it.text.toString()))
+            }
+        }
+    }
+
+    override fun onClick(view: View?) {
+        when(view?.id) {
+            R.id.new_recipe_form_button_add_ingredient -> {
+                createNewIngredient()
+                recyclerView?.adapter?.notifyDataSetChanged()
+            }
+            R.id.new_recipe_form_button_validate -> {
+                createNewRecipe()
+            }
+            R.id.new_recipe_form_button_return -> {
+                findNavController().navigate(R.id.action_NewRecipeFragment_to_HomeFragment)
+            }
         }
     }
 

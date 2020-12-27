@@ -5,15 +5,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import fr.esgi.cocotton.R
 import fr.esgi.cocotton.model.Recipe
 import fr.esgi.cocotton.viewHolder.RecipeViewHolder
 
 
-class MyAdapter(private val recipes: List<Recipe>) : RecyclerView.Adapter<RecipeViewHolder>()
+class RecipeAdapter(private val recipes: List<Recipe>) : RecyclerView.Adapter<RecipeViewHolder>()
 {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder
