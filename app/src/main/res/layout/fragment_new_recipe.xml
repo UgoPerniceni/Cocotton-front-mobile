@@ -41,6 +41,24 @@
             />
 
         <TextView
+            android:id="@+id/new_recipe_form_text_view_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Icon"
+            android:textSize="25sp"
+
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            />
+
+        <Spinner
+            android:id="@+id/new_recipe_form_spinner_icons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            />
+
+        <TextView
             android:id="@+id/new_recipe_form_text_view_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -180,12 +198,12 @@
             android:id="@+id/new_recipe_form_edit_text_steps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
             android:background="@drawable/border2"
             android:inputType="textMultiLine"
             android:gravity="top"
             android:lines="8"
-            android:autofillHints="Please enter the steps to follow." />
+            android:autofillHints="Please enter the steps to follow."
+            android:layout_marginBottom="20dp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"

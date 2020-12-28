@@ -39,7 +39,7 @@ class RecipeViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
             val hours = it.div(60)
             val minutes = it.rem(60)
 
-            return if (hours?: 0 > 0){
+            return if (hours > 0){
                 "${hours}h and $minutes min"
             }else{
                 "$minutes min"

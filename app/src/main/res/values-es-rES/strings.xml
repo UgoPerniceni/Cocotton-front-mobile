@@ -65,5 +65,7 @@
     <string name="field_required">Please fill out this field.</string>
     <string name="fields_required">Please fill out all the required fields.</string>
     <string name="created_by">Created by :</string>
+    <string name="icon">Icon</string>
+
 
 </resources>

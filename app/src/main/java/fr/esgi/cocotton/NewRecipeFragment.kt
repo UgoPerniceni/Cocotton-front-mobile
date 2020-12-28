@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseUser
 import fr.esgi.cocotton.adapter.IngredientAdapter
+import fr.esgi.cocotton.adapter.SpinnerIconAdapter
+import fr.esgi.cocotton.model.Icon
 import fr.esgi.cocotton.model.Ingredient
 import fr.esgi.cocotton.model.Recipe
 
@@ -28,11 +30,13 @@ import fr.esgi.cocotton.model.Recipe
 class NewRecipeFragment : Fragment(), View.OnClickListener {
 
     private var spinner: Spinner? = null
+    private var spinnerIcons: Spinner? = null
 
     private var pickerHours: NumberPicker? = null
     private var pickerMinutes: NumberPicker? = null
 
     private var textViewNewRecipe: TextView? = null
+    private var textViewIcon: TextView? = null
     private var textViewTime: TextView? = null
     private var textViewIngredient: TextView? = null
     private var textViewStep: TextView? = null
@@ -96,6 +100,11 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
+
+        spinnerIcons?.apply {
+            val adapter = SpinnerIconAdapter(context, loadDefaultIcons())
+            this.adapter = adapter
+        }
     }
 
     private fun initialize(view: View){
@@ -120,10 +129,13 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
 
     private fun setViewByIds(view: View){
         spinner = view.findViewById(R.id.new_recipe_form_spinner_difficulty)
+        spinnerIcons = view.findViewById(R.id.new_recipe_form_spinner_icons)
+
         pickerHours = view.findViewById(R.id.new_recipe_form_number_picker_hours)
         pickerMinutes = view.findViewById(R.id.new_recipe_form_number_picker_minutes)
 
         textViewNewRecipe = view.findViewById(R.id.new_recipe_form_text_view)
+        textViewIcon = view.findViewById(R.id.new_recipe_form_text_view_icon)
         textViewTime = view.findViewById(R.id.new_recipe_form_text_view_time)
         textViewIngredient = view.findViewById(R.id.new_recipe_form_text_view_ingredients)
         textViewStep = view.findViewById(R.id.new_recipe_form_text_view_steps)
@@ -145,6 +157,7 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
     private fun setStyles(){
         textViewNewRecipe?.setTypeface(null, Typeface.BOLD)
 
+        textViewIcon?.setTypeface(null, Typeface.ITALIC)
         textViewTime?.setTypeface(null, Typeface.ITALIC)
         textViewIngredient?.setTypeface(null, Typeface.ITALIC)
         textViewStep?.setTypeface(null, Typeface.ITALIC)
@@ -236,6 +249,16 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
                 findNavController().navigate(R.id.action_NewRecipeFragment_to_HomeFragment)
             }
         }
+    }
+
+    private fun loadDefaultIcons(): List<Icon> {
+        val listOfIcons = mutableListOf<Icon>()
+
+        listOfIcons.add(Icon("Cooker", R.drawable.cooker_icon))
+        listOfIcons.add(Icon("Icon 2", R.drawable.cooker_icon))
+        listOfIcons.add(Icon("Icon 3", R.drawable.cooker_icon))
+
+        return listOfIcons;
     }
 
     companion object {
