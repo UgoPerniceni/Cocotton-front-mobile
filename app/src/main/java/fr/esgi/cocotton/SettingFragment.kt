@@ -59,10 +59,19 @@ class SettingFragment : Fragment(), View.OnClickListener {
             this.onItemSelectedListener = object : OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                     when (position) {
-                        0 -> (activity as MainActivity).setLocale("eng")
-                        1 -> (activity as MainActivity).setLocale("fr")
-                        2 -> (activity as MainActivity).setLocale("es")
-                        else -> {}
+                        0 -> {
+                            (activity as MainActivity).setLocale("eng")
+                            Toast.makeText(context, "Current language is English", Toast.LENGTH_SHORT).show()
+                        }
+                        1 -> {
+                            (activity as MainActivity).setLocale("fr")
+                            Toast.makeText(context, "Current language is French", Toast.LENGTH_SHORT).show()
+                        }
+                        2 -> {
+                            (activity as MainActivity).setLocale("es")
+                            Toast.makeText(context, "Current language is Spanish", Toast.LENGTH_SHORT).show()
+                        }
+
                     }
                 }
                 override fun onNothingSelected(adapterView: AdapterView<*>?) {}

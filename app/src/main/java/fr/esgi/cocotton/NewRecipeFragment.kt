@@ -1,5 +1,6 @@
 package fr.esgi.cocotton
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
@@ -31,12 +32,17 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
     private var pickerHours: NumberPicker? = null
     private var pickerMinutes: NumberPicker? = null
 
+    private var textViewNewRecipe: TextView? = null
+    private var textViewTime: TextView? = null
+    private var textViewIngredient: TextView? = null
+    private var textViewStep: TextView? = null
     private var textViewHours: TextView? = null
     private var textViewMinutes: TextView? = null
 
     private var editTextName: EditText? = null
     private var editTextPerson: EditText? = null
     private var editTextIngredient: EditText? = null
+    private var editTextSteps: EditText? = null
 
     private var recyclerView: RecyclerView? = null
 
@@ -97,6 +103,8 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
         setOnClickListeners(view)
 
         setRecycleView(view)
+
+        setStyles()
     }
 
     private fun setRecycleView(view: View){
@@ -115,18 +123,31 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
         pickerHours = view.findViewById(R.id.new_recipe_form_number_picker_hours)
         pickerMinutes = view.findViewById(R.id.new_recipe_form_number_picker_minutes)
 
+        textViewNewRecipe = view.findViewById(R.id.new_recipe_form_text_view)
+        textViewTime = view.findViewById(R.id.new_recipe_form_text_view_time)
+        textViewIngredient = view.findViewById(R.id.new_recipe_form_text_view_ingredients)
+        textViewStep = view.findViewById(R.id.new_recipe_form_text_view_steps)
         textViewHours = view.findViewById(R.id.new_recipe_text_view_hours)
         textViewMinutes = view.findViewById(R.id.new_recipe_text_view_minutes)
 
         editTextName = view.findViewById(R.id.new_recipe_form_name)
         editTextPerson = view.findViewById(R.id.new_recipe_form_for_number)
         editTextIngredient = view.findViewById(R.id.new_recipe_form_edit_text_create)
+        editTextSteps = view.findViewById(R.id.new_recipe_form_edit_text_steps)
     }
 
     private fun setOnClickListeners(view: View){
         view.findViewById<Button>(R.id.new_recipe_form_button_add_ingredient).setOnClickListener(this)
         view.findViewById<Button>(R.id.new_recipe_form_button_validate).setOnClickListener(this)
         view.findViewById<Button>(R.id.new_recipe_form_button_return).setOnClickListener(this)
+    }
+
+    private fun setStyles(){
+        textViewNewRecipe?.setTypeface(null, Typeface.BOLD)
+
+        textViewTime?.setTypeface(null, Typeface.ITALIC)
+        textViewIngredient?.setTypeface(null, Typeface.ITALIC)
+        textViewStep?.setTypeface(null, Typeface.ITALIC)
     }
 
     private fun setUpTextHours(counter: Int) {
@@ -144,14 +165,21 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
 
         editTextName?.let {
             if(TextUtils.isEmpty(it.text.toString())){
-                it.error = "Veuillez remplir ce champ (3 char+)"
+                it.error = getString(R.string.field_required_3_char)
                 validateForm = false
             }
         }
 
         editTextPerson?.let {
             if(TextUtils.isEmpty(it.text.toString())){
-                it.error = "Veuillez remplir ce champ"
+                it.error = getString(R.string.field_required)
+                validateForm = false
+            }
+        }
+
+        editTextSteps?.let {
+            if(TextUtils.isEmpty(it.text.toString())){
+                it.error = getString(R.string.field_required)
                 validateForm = false
             }
         }
@@ -170,24 +198,25 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
             val minutes = pickerMinutes?.value
             val time = minutes?.let { hours?.plus(it) }
             val ingredients: List<Ingredient> = ingredients
+            val steps = view?.findViewById<EditText>(R.id.new_recipe_form_edit_text_steps)
 
             val authorDN = userConnected?.displayName
             val authorEmail = userConnected?.email
 
-            val newRecipe = Recipe("${name?.text}", time?.toLong(), ("${forPerson?.text}").toLong(), "${difficulty?.selectedItem}", "/path", ingredients,"$authorDN",  "$authorEmail")
+            val newRecipe = Recipe("${name?.text}", time?.toLong(), ("${forPerson?.text}").toLong(), "${difficulty?.selectedItem}", "/path", ingredients, steps?.text.toString().replace("\n", "\\n"),"$authorDN",  "$authorEmail")
             newRecipe.saveToDb()
 
             findNavController().navigate(R.id.action_NewRecipeFragment_to_HomeFragment)
 
         }else{
-            Toast.makeText(context, "Remplir les champs svp", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, getString(R.string.fields_required), Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun createNewIngredient(){
         editTextIngredient?.let {
             if(TextUtils.isEmpty(it.text.toString())){
-                it.error = "Veuillez remplir ce champ (3 char+)"
+                it.error = getString(R.string.field_required)
             }else{
                 ingredients.add(Ingredient(it.text.toString()))
             }

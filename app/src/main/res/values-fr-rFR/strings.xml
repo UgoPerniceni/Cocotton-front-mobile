@@ -22,6 +22,7 @@
     <string name="new_recipe">Nouvelle recette</string>
     <string name="name">Nom</string>
     <string name="time">Temps</string>
+    <string name="time_required">Time required</string>
     <string name="difficulty">Difficulté</string>
     <string name="for_how_many_person">Pour combien de personnes ?</string>
     <string name="validate">Valider</string>
@@ -54,4 +55,13 @@
     <string name="depend">Depend du temps</string>
 
     <string name="author">author</string>
+    <string name="ingredients">Ingrédients</string>
+    <string name="add_recipe">Add recipe</string>
+    <string name="add_ingredient">Add ingredient</string>
+    <string name="add">Add</string>
+    <string name="steps">Steps</string>
+    <string name="please_enter_steps">Please enter the steps to follow.</string>
+    <string name="field_required_3_char">Please fill out this field with more than 3 characters.</string>
+    <string name="field_required">Please fill out this field.</string>
+    <string name="fields_required">Please fill out all the required fields.</string>
 </resources>

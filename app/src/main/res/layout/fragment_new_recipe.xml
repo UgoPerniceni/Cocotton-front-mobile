@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/new_recipe"
-            android:textSize="30sp"
+            android:textSize="36sp"
 
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
@@ -44,7 +44,7 @@
             android:id="@+id/new_recipe_form_text_view_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/time"
+            android:text="@string/time_required"
 
             android:textSize="25sp"
             android:layout_marginTop="20dp"
@@ -129,7 +129,7 @@
             android:layout_height="wrap_content"
 
             android:textSize="25sp"
-            android:text="Ingrédients"
+            android:text="@string/ingredients"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"/>
 
@@ -146,7 +146,7 @@
                 android:id="@+id/new_recipe_form_edit_text_create"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Add recipe"
+                android:hint="@string/add_recipe"
 
                 android:textAlignment="center"
                 android:autofillHints=""
@@ -156,7 +156,7 @@
                 android:id="@+id/new_recipe_form_button_add_ingredient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ajouter"
+                android:text="@string/add"
                 />
         </LinearLayout>
 
@@ -172,7 +172,7 @@
             android:layout_height="wrap_content"
 
             android:textSize="25sp"
-            android:text="Steps"
+            android:text="@string/steps"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"/>
 
@@ -184,7 +184,8 @@
             android:background="@drawable/border2"
             android:inputType="textMultiLine"
             android:gravity="top"
-            android:lines="8" />
+            android:lines="8"
+            android:autofillHints="Please enter the steps to follow." />
 
         <LinearLayout
             android:layout_width="wrap_content"
