@@ -64,4 +64,6 @@
     <string name="field_required_3_char">Please fill out this field with more than 3 characters.</string>
     <string name="field_required">Please fill out this field.</string>
     <string name="fields_required">Please fill out all the required fields.</string>
+    <string name="created_by">Created by :</string>
+
 </resources>

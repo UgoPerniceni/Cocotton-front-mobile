@@ -30,10 +30,9 @@ class RecipeViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     {
         name?.text = recipe.name
         difficulty?.text = recipe.difficulty
-        author?.text = "Author : " + recipe.authorDisplayName
+        author?.text = recipe.authorDisplayName
 
-        time?.text = formatTime(recipe.time)
-    }
+        time?.text = formatTime(recipe.time) }
 
     private fun formatTime(timestamp: Long?): String{
         timestamp?.let {
