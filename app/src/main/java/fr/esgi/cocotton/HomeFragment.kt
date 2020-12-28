@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import fr.esgi.cocotton.adapter.RecipeAdapter
+import fr.esgi.cocotton.model.Icon
 import fr.esgi.cocotton.model.Ingredient
 import fr.esgi.cocotton.model.Recipe
 
@@ -62,7 +63,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
                                 document.data["time"] as Long,
                                 document.data["forPerson"] as Long,
                                 document.data["difficulty"] as String,
-                                document.data["image"] as String,
+                                    document.data["icon"] as Number,
                                     document.data["ingredients"] as List<Ingredient>,
                                     document.data["steps"] as String,
                                 document.data["authorDisplayName"] as String,

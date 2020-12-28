@@ -2,6 +2,7 @@ package fr.esgi.cocotton.viewHolder
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import fr.esgi.cocotton.R
@@ -13,6 +14,8 @@ class RecipeViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     )
 {
 
+    private var image: ImageView? = null
+
     private var name: TextView? = null
     private var time: TextView? = null
     private var difficulty: TextView? = null
@@ -20,6 +23,7 @@ class RecipeViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
 
     init
     {
+        image = itemView.findViewById(R.id.recipe_item_image)
         name = itemView.findViewById(R.id.recipe_item_name)
         time = itemView.findViewById(R.id.recipe_item_time)
         difficulty = itemView.findViewById(R.id.recipe_item_difficulty)
@@ -32,7 +36,10 @@ class RecipeViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         difficulty?.text = recipe.difficulty
         author?.text = recipe.authorDisplayName
 
-        time?.text = formatTime(recipe.time) }
+        time?.text = formatTime(recipe.time)
+
+        image?.setImageResource(recipe.icon.toInt())
+    }
 
     private fun formatTime(timestamp: Long?): String{
         timestamp?.let {

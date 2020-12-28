@@ -205,6 +205,7 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
             val userConnected : FirebaseUser? = (activity as MainActivity).mAuth.currentUser
 
             val name = view?.findViewById<EditText>(R.id.new_recipe_form_name)
+            val icon: Icon = view?.findViewById<Spinner>(R.id.new_recipe_form_spinner_icons)?.selectedItem as Icon
             val forPerson = view?.findViewById<EditText>(R.id.new_recipe_form_for_number)
             val difficulty = view?.findViewById<Spinner>(R.id.new_recipe_form_spinner_difficulty)
             val hours = pickerHours?.value?.times(60)
@@ -216,7 +217,7 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
             val authorDN = userConnected?.displayName
             val authorEmail = userConnected?.email
 
-            val newRecipe = Recipe("${name?.text}", time?.toLong(), ("${forPerson?.text}").toLong(), "${difficulty?.selectedItem}", "/path", ingredients, steps?.text.toString().replace("\n", "\\n"),"$authorDN",  "$authorEmail")
+            val newRecipe = Recipe("${name?.text}", time?.toLong(), ("${forPerson?.text}").toLong(), "${difficulty?.selectedItem}", icon.drawable, ingredients, steps?.text.toString().replace("\n", "\\n"),"$authorDN",  "$authorEmail")
             newRecipe.saveToDb()
 
             findNavController().navigate(R.id.action_NewRecipeFragment_to_HomeFragment)
@@ -255,8 +256,11 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
         val listOfIcons = mutableListOf<Icon>()
 
         listOfIcons.add(Icon("Cooker", R.drawable.cooker_icon))
-        listOfIcons.add(Icon("Icon 2", R.drawable.cooker_icon))
-        listOfIcons.add(Icon("Icon 3", R.drawable.cooker_icon))
+        listOfIcons.add(Icon("Cooker open", R.drawable.cooker_open_icon))
+        listOfIcons.add(Icon("Cleaver", R.drawable.cleaver_icon))
+        listOfIcons.add(Icon("Frying pan", R.drawable.frying_pan_icon))
+        listOfIcons.add(Icon("Ingredients", R.drawable.ingredients_icon))
+        listOfIcons.add(Icon("Mitten", R.drawable.mitten_icon))
 
         return listOfIcons;
     }

@@ -1,61 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    android:id="@+id/root_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RecipeFragment">
 
-    <TextView
-        android:id="@+id/recipe_text_view_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/name"
-        android:textSize="25sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/recipe_text_view_author"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
-
-    <TextView
-        android:id="@+id/recipe_text_view_author"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/author"
-        app:layout_constraintTop_toBottomOf="@+id/recipe_text_view_title"
-        app:layout_constraintBottom_toTopOf="@+id/recipe_linear_layout_difficulty_and_time"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
-
     <LinearLayout
-        android:id="@+id/recipe_linear_layout_difficulty_and_time"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:gravity="center"
-        android:orientation="horizontal"
 
-        app:layout_constraintTop_toBottomOf="@+id/recipe_text_view_author"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp">
 
         <TextView
-            android:id="@+id/recipe_text_view_difficulty"
+            android:id="@+id/recipe_text_view_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/difficulty"
-            android:layout_marginEnd="25dp"
+            android:text="@string/name"
+            android:textSize="36sp"
+
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             />
 
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+
+            android:src="@drawable/cooker_icon"
+            android:layout_marginBottom="20dp"/>
+
         <TextView
-            android:id="@+id/recipe_text_view_time_required"
+            android:id="@+id/recipe_text_view_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/time"
-            android:layout_marginEnd="25dp"/>
+            android:text="@string/author"
+            android:layout_marginBottom="20dp"
+            />
 
+        <LinearLayout
+            android:id="@+id/recipe_linear_layout_difficulty_and_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/recipe_text_view_difficulty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/difficulty"
+                android:layout_marginEnd="25dp"
+                />
+
+            <TextView
+                android:id="@+id/recipe_text_view_time_required"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/time"
+                android:layout_marginEnd="25dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:textSize="26sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ingredients"
+            android:layout_marginBottom="20dp"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recipe_recycle_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:id="@+id/recipe_text_view_steps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:textSize="25sp"
+            android:text="@string/steps"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:id="@+id/recipe_edit_text_steps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border2"
+            android:gravity="top"
+            android:lines="8"
+            android:layout_marginBottom="20dp"/>
     </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
