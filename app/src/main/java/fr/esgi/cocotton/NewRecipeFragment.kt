@@ -89,7 +89,7 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
         editTextName?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(text: Editable?) {
                 val content = text.toString()
-                editTextName?.error = if (content.isBlank() || content.length <= 3) "Veuillez remplir ce champ (3 char+)" else null
+                editTextName?.error = if (content.isBlank() || content.length <= 3) getString(R.string.field_required_3_char) else null
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}

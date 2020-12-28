@@ -1,11 +1,8 @@
 package fr.esgi.cocotton.viewHolder
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import fr.esgi.cocotton.R
 import fr.esgi.cocotton.model.Recipe
@@ -18,31 +15,38 @@ class RecipeViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
 
     private var name: TextView? = null
     private var time: TextView? = null
-    private var image: TextView? = null
-/*    private var buttonNavigate: ImageButton? = null*/
+    private var difficulty: TextView? = null
+    private var author: TextView? = null
 
     init
     {
-        name = itemView.findViewById(R.id.name)
-        time = itemView.findViewById(R.id.time)
-        image = itemView.findViewById(R.id.image)
-
-/*        buttonNavigate = itemView.findViewById(R.id.button_navigation)*/
+        name = itemView.findViewById(R.id.recipe_item_name)
+        time = itemView.findViewById(R.id.recipe_item_time)
+        difficulty = itemView.findViewById(R.id.recipe_item_difficulty)
+        author = itemView.findViewById(R.id.recipe_item_author)
     }
 
     fun bind(recipe: Recipe)
     {
-        val hours = recipe.time?.div(60)
-        val minutes = recipe.time?.rem(60)
-
         name?.text = recipe.name
+        difficulty?.text = recipe.difficulty
+        author?.text = "Author : " + recipe.authorDisplayName
 
-        if (hours?: 0 > 0){
-            time?.text = "${hours}h and ${minutes} min"
-        }else{
-            time?.text = "${minutes} min"
+        time?.text = formatTime(recipe.time)
+    }
+
+    private fun formatTime(timestamp: Long?): String{
+        timestamp?.let {
+            val hours = it.div(60)
+            val minutes = it.rem(60)
+
+            return if (hours?: 0 > 0){
+                "${hours}h and $minutes min"
+            }else{
+                "$minutes min"
+            }
         }
 
-        image?.text = recipe.image
+        return "No time"
     }
 }
