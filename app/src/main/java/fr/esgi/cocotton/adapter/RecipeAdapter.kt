@@ -33,6 +33,7 @@ class RecipeAdapter(private val recipes: List<Recipe>) : RecyclerView.Adapter<Re
                     "difficulty" to "Difficulty : ${recipe.difficulty}",
                     "timeRequired" to recipe.time,
                     "ingredients" to recipe.ingredients,
+                    "person" to recipe.forPerson,
                     "steps" to recipe.steps
             )
 

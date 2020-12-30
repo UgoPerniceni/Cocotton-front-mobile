@@ -45,6 +45,11 @@
         <item quantity="other">minutos</item>
     </plurals>
 
+    <plurals name="for_persons">
+        <item quantity="one">This recipe is for %1$d person.</item>
+        <item quantity="other">This recipe is for %1$d persons.</item>
+    </plurals>
+
     <!-- Arrays translations -->
     <string name="easy">Fácil</string>
     <string name="medium">Mediano</string>

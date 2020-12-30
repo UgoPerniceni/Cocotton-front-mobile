@@ -33,6 +33,8 @@ class RecipeFragment : Fragment(), View.OnClickListener {
     private var textViewTimeRequired: TextView? = null
     private var textViewSteps: TextView? = null
 
+    private var textViewPersons: TextView? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,6 +54,7 @@ class RecipeFragment : Fragment(), View.OnClickListener {
         textViewAuthor = view.findViewById(R.id.recipe_text_view_author)
         textViewDifficulty = view.findViewById(R.id.recipe_text_view_difficulty)
         textViewTimeRequired = view.findViewById(R.id.recipe_text_view_time_required)
+        textViewPersons = view.findViewById(R.id.recipe_text_view_for_persons)
 
         textViewSteps = view.findViewById(R.id.recipe_edit_text_steps)
 
@@ -95,6 +98,13 @@ class RecipeFragment : Fragment(), View.OnClickListener {
             }
         }
 
+        textViewPersons?.apply {
+            val person: Long? = arguments?.getLong("person")
+            person?.let {
+                this.text = resources.getQuantityString(R.plurals.for_persons, it.toInt(), it.toString())
+            }
+        }
+
         textViewSteps?.apply {
             val steps: String? = arguments?.getString("steps")?.replace("\\n", "\n")
             this.text = steps
@@ -115,7 +125,7 @@ class RecipeFragment : Fragment(), View.OnClickListener {
         return "0m"
     }
 
-    override fun onClick(v: View?) {
+    override fun onClick(view: View?) {
         when(view?.id) {
             R.id.recipe_button_return -> {
                 findNavController().navigate(R.id.action_RecipeFragment_to_HomeFragment)
