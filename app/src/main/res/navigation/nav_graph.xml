@@ -70,5 +70,9 @@
         android:name="fr.esgi.cocotton.RecipeFragment"
         android:label="recipe"
         tools:layout="@layout/fragment_recipe">
+
+        <action
+            android:id="@+id/action_RecipeFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
     </fragment>
 </navigation>

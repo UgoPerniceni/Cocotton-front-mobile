@@ -28,12 +28,30 @@
             android:layout_marginBottom="20dp"
             />
 
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-
-            android:src="@drawable/cooker_icon"
-            android:layout_marginBottom="20dp"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <View
+                android:id="@+id/divider0"
+                android:layout_width="100dp"
+                android:layout_height="1dp"
+                android:background="@color/black"
+                android:layout_marginEnd="20dp" />
+            <ImageView
+                android:id="@+id/recipe_text_view_icon"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/cooker_icon"
+                android:contentDescription="@string/icon" />
+            <View
+                android:id="@+id/divider"
+                android:layout_width="100dp"
+                android:layout_height="1dp"
+                android:background="@color/black"
+                android:layout_marginStart="20dp"/>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/recipe_text_view_author"
@@ -98,5 +116,15 @@
             android:gravity="top"
             android:lines="8"
             android:layout_marginBottom="20dp"/>
+
+        <Button
+            android:id="@+id/recipe_button_return"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/navigation_return"
+            android:layout_marginBottom="20dp"
+            />
+
     </LinearLayout>
+
 </ScrollView>
