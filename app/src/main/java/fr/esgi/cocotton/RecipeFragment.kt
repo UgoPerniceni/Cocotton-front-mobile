@@ -88,13 +88,31 @@ class RecipeFragment : Fragment(), View.OnClickListener {
             this.text = arguments?.getString("difficulty")
         }
         textViewTimeRequired?.apply {
-            this.text = arguments?.getString("timeRequired")
+            val timestamp: Long? = arguments?.getLong("timeRequired")
+
+            timestamp?.let {
+                this.text = getString(R.string.time_required_, formatTime(timestamp))
+            }
         }
 
         textViewSteps?.apply {
             val steps: String? = arguments?.getString("steps")?.replace("\\n", "\n")
             this.text = steps
         }
+    }
+
+    private fun formatTime(timestamp: Long?): String{
+        timestamp?.let {
+            val hours = it.div(60)
+            val minutes = it.rem(60)
+
+            return if (hours > 0){
+                "${hours}h${minutes}m"
+            }else{
+                "${minutes}m"
+            }
+        }
+        return "0m"
     }
 
     override fun onClick(v: View?) {

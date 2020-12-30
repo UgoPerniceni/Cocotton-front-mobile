@@ -31,7 +31,7 @@ class RecipeAdapter(private val recipes: List<Recipe>) : RecyclerView.Adapter<Re
                     "icon" to recipe.icon,
                     "author" to "Created by : ${recipe.authorDisplayName}",
                     "difficulty" to "Difficulty : ${recipe.difficulty}",
-                    "timeRequired" to "Time required : ${recipe.time}",
+                    "timeRequired" to recipe.time,
                     "ingredients" to recipe.ingredients,
                     "steps" to recipe.steps
             )

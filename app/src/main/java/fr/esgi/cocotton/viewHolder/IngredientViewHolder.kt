@@ -13,15 +13,18 @@ class IngredientViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         )
 {
 
+    private var number: TextView? = null
     private var name: TextView? = null
 
     init
     {
+        number = itemView.findViewById(R.id.ingredient_item_number)
         name = itemView.findViewById(R.id.ingredient_item_name)
     }
 
-    fun bind(ingredient: Ingredient)
+    fun bind(ingredient: Ingredient, position: Int)
     {
+        number?.text = position.toString()
         name?.text = ingredient.name
     }
 }

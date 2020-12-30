@@ -66,6 +66,6 @@
     <string name="created_by">Created by :</string>
     <string name="icon">Icon</string>
 
-
+    <string name="time_required_">Time :  %1$s</string>
 
 </resources>

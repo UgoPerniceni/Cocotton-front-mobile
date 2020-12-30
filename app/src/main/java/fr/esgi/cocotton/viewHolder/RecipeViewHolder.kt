@@ -47,12 +47,11 @@ class RecipeViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
             val minutes = it.rem(60)
 
             return if (hours > 0){
-                "${hours}h and $minutes min"
+                "${hours}h${minutes}m"
             }else{
-                "$minutes min"
+                "${minutes}m"
             }
         }
-
-        return "No time"
+        return "0m"
     }
 }
