@@ -74,5 +74,6 @@
 
     <string name="time_required_">Time :  %1$s</string>
 
+    <string name="home">Home</string>
 
 </resources>

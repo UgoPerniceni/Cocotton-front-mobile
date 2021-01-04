@@ -113,6 +113,12 @@ class MainActivity : AppCompatActivity(){
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
+            R.id.action_home -> {
+                val navController = findNavController(R.id.nav_host_fragment)
+
+                navController.navigate(R.id.HomeFragment)
+                return true
+            }
             R.id.action_settings -> {
                 val navController = findNavController(R.id.nav_host_fragment)
 
