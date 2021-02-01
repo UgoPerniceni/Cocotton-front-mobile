@@ -45,11 +45,6 @@ class MainActivity : AppCompatActivity(){
 
         loadLocate()
 
-/*        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }*/
-
         loader = findViewById(R.id.loader)
         fadeScreen = findViewById(R.id.fadeScreen)
 
@@ -117,6 +112,12 @@ class MainActivity : AppCompatActivity(){
                 val navController = findNavController(R.id.nav_host_fragment)
 
                 navController.navigate(R.id.HomeFragment)
+                return true
+            }
+            R.id.action_profile -> {
+                val navController = findNavController(R.id.nav_host_fragment)
+
+                navController.navigate(R.id.ProfileFragment)
                 return true
             }
             R.id.action_settings -> {
