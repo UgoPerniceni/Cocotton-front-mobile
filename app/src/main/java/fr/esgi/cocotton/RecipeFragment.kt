@@ -101,7 +101,7 @@ class RecipeFragment : Fragment(), View.OnClickListener {
         textViewPersons?.apply {
             val person: Long? = arguments?.getLong("person")
             person?.let {
-                this.text = resources.getQuantityString(R.plurals.for_persons, it.toInt(), it.toString())
+                this.text = resources.getQuantityString(R.plurals.for_persons, it.toInt(), it)
             }
         }
 
