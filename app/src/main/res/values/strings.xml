@@ -33,6 +33,8 @@
     <string name="hour">hour</string>
     <string name="minute">minute</string>
 
+    <string name="email">Email address</string>
+
     <!-- Plurals -->
     <plurals name="countHours">
         <item quantity="one">hour</item>
