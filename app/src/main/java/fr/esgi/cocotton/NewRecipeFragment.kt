@@ -265,6 +265,11 @@ class NewRecipeFragment : Fragment(), View.OnClickListener {
         return listOfIcons;
     }
 
+    override fun onStart() {
+        super.onStart()
+        context?.let { (activity as MainActivity).isOnline(it) }
+    }
+
     companion object {
         @JvmStatic
         fun newInstance() = SettingFragment()

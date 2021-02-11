@@ -42,4 +42,9 @@ class ProfileFragment : Fragment() {
 
         Picasso.get().load(imageUrl).into(userIcon)
     }
+
+    override fun onStart() {
+        super.onStart()
+        context?.let { (activity as MainActivity).isOnline(it) }
+    }
 }

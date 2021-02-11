@@ -120,6 +120,11 @@ class SettingFragment : Fragment(), View.OnClickListener {
         Toast.makeText(context, "Successfully disconnected.", Toast.LENGTH_SHORT).show()
     }
 
+    override fun onStart() {
+        super.onStart()
+        context?.let { (activity as MainActivity).isOnline(it) }
+    }
+
     override fun onClick(view: View?) {
         when(view?.id){
             R.id.button_fragment_setting_disconnect -> {

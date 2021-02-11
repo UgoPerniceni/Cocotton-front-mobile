@@ -125,6 +125,11 @@ class RecipeFragment : Fragment(), View.OnClickListener {
         return "0m"
     }
 
+    override fun onStart() {
+        super.onStart()
+        context?.let { (activity as MainActivity).isOnline(it) }
+    }
+
     override fun onClick(view: View?) {
         when(view?.id) {
             R.id.recipe_button_return -> {

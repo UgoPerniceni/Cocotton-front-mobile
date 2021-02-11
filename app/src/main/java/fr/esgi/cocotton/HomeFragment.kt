@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -82,6 +83,11 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
                 (activity as MainActivity).hideLoader()
             }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        context?.let { (activity as MainActivity).isOnline(it) }
     }
 
     override fun onClick(view: View?) {

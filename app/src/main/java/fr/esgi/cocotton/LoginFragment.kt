@@ -39,6 +39,11 @@ class LoginFragment : Fragment(), View.OnClickListener {
         menu.clear()
     }
 
+    override fun onStart() {
+        super.onStart()
+        context?.let { (activity as MainActivity).isOnline(it) }
+    }
+
     override fun onClick(view: View?) {
         when(view?.id){
             R.id.button_first -> {
