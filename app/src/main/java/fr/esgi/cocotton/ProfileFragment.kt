@@ -37,7 +37,7 @@ class ProfileFragment : Fragment() {
         userEmail = view.findViewById(R.id.user_email)
         userEmail?.text = user?.email
 
-        userIcon = view.findViewById(R.id.recipe_text_view_icon)
+        userIcon = view.findViewById(R.id.fragment_profile_user_icon)
         val imageUrl = user?.photoUrl.toString()
 
         Picasso.get().load(imageUrl).into(userIcon)
