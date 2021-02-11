@@ -1,18 +1,25 @@
 package fr.esgi.cocotton
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.squareup.picasso.Picasso
+import java.io.InputStream
+import java.net.URL
 
 class ProfileFragment : Fragment() {
 
     private var userName: TextView? = null
     private var userEmail: TextView? = null
+
+    private var userIcon: ImageView? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -29,5 +36,10 @@ class ProfileFragment : Fragment() {
 
         userEmail = view.findViewById(R.id.user_email)
         userEmail?.text = user?.email
+
+        userIcon = view.findViewById(R.id.recipe_text_view_icon)
+        val imageUrl = user?.photoUrl.toString()
+
+        Picasso.get().load(imageUrl).into(userIcon)
     }
 }
