@@ -60,22 +60,22 @@
     <string name="depend">Depende del tiempo</string>
     <string name="email">El addressa del maile</string>
 
-    <string name="author">author</string>
-    <string name="ingredients">Ingredients</string>
-    <string name="add_recipe">Add recipe</string>
-    <string name="add_ingredient">Add ingredient</string>
-    <string name="add">Add</string>
-    <string name="steps">Steps</string>
-    <string name="please_enter_steps">Please enter the steps to follow.</string>
-    <string name="field_required_3_char">Please fill out this field with more than 3 characters.</string>
-    <string name="field_required">Please fill out this field.</string>
-    <string name="fields_required">Please fill out all the required fields.</string>
-    <string name="created_by">Created by :</string>
-    <string name="icon">Icon</string>
+    <string name="author">autora</string>
+    <string name="ingredients">Ingredientes</string>
+    <string name="add_recipe">Agregar receta</string>
+    <string name="add_ingredient">Agregar ingrediente</string>
+    <string name="add">Añadir</string>
+    <string name="steps">Pasos</string>
+    <string name="please_enter_steps">Ingrese los pasos a seguir.</string>
+    <string name="field_required_3_char">Complete este campo con más de 3 caracteres.</string>
+    <string name="field_required">Por favor rellene este campo.</string>
+    <string name="fields_required">Por favor, rellene todos los campos obligatorios.</string>
+    <string name="created_by">Creado por :</string>
+    <string name="icon">Icono</string>
 
-    <string name="time_required_">Time :  %1$s</string>
+    <string name="time_required_">Hora :  %1$s</string>
 
-    <string name="home">Home</string>
-    <string name="profile">Profile</string>
+    <string name="home">Hogar</string>
+    <string name="profile">Perfil</string>
 
 </resources>
