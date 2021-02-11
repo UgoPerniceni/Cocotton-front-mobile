@@ -22,16 +22,16 @@
     <string name="new_recipe">Nouvelle recette</string>
     <string name="name">Nom</string>
     <string name="time">Temps</string>
-    <string name="time_required">Time required</string>
+    <string name="time_required">Temps requis</string>
     <string name="difficulty">Difficulté</string>
     <string name="for_how_many_person">Pour combien de personnes ?</string>
     <string name="validate">Valider</string>
 
-    <string name="login">Connection</string>
+    <string name="login">Connexion</string>
     <string name="disconnect">Se déconnecter</string>
     <string name="action_themes">Thèmes</string>
 
-    <string name="hour">hour</string>
+    <string name="hour">heure</string>
     <string name="minute">minute</string>
 
     <!-- Plurals -->
@@ -46,8 +46,8 @@
     </plurals>
 
     <plurals name="for_persons">
-        <item quantity="one">This recipe is for %1$d person.</item>
-        <item quantity="other">This recipe is for %1$d persons.</item>
+        <item quantity="one">Cette recette est pour %1$d personne.</item>
+        <item quantity="other">Cette recette est pour %1$d personnes.</item>
     </plurals>
 
     <!-- Arrays translations -->
@@ -60,22 +60,22 @@
     <string name="depend">Depend du temps</string>
     <string name="email">Adresse email</string>
 
-    <string name="author">author</string>
+    <string name="author">Auteur</string>
     <string name="ingredients">Ingrédients</string>
-    <string name="add_recipe">Add recipe</string>
-    <string name="add_ingredient">Add ingredient</string>
-    <string name="add">Add</string>
-    <string name="steps">Steps</string>
-    <string name="please_enter_steps">Please enter the steps to follow.</string>
-    <string name="field_required_3_char">Please fill out this field with more than 3 characters.</string>
-    <string name="field_required">Please fill out this field.</string>
-    <string name="fields_required">Please fill out all the required fields.</string>
-    <string name="created_by">Created by :</string>
-    <string name="icon">Icon</string>
+    <string name="add_recipe">Ajouter une recette</string>
+    <string name="add_ingredient">Ajouter ingrédient</string>
+    <string name="add">Ajouter</string>
+    <string name="steps">Étapes</string>
+    <string name="please_enter_steps">Quelles sont les étapes à suivre?</string>
+    <string name="field_required_3_char">Remplissez ce champs avec au moins 3 caractères</string>
+    <string name="field_required">Remplissez ce champs.</string>
+    <string name="fields_required">Remplissez tous les champs nécessaires.</string>
+    <string name="created_by">Créée par :</string>
+    <string name="icon">Icône</string>
 
-    <string name="time_required_">Time :  %1$s</string>
+    <string name="time_required_">Temps :  %1$s</string>
 
     <string name="home">Home</string>
-    <string name="profile">Profile</string>
+    <string name="profile">Profil</string>
 
 </resources>
