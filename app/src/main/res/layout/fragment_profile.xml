@@ -43,7 +43,7 @@
                 android:background="@color/black" />
 
             <ImageView
-                android:id="@+id/recipe_text_view_icon"
+                android:id="@+id/fragment_profile_user_icon"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:contentDescription="@string/icon"
