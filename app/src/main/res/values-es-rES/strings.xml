@@ -46,8 +46,8 @@
     </plurals>
 
     <plurals name="for_persons">
-        <item quantity="one">This recipe is for %1$d person.</item>
-        <item quantity="other">This recipe is for %1$d persons.</item>
+        <item quantity="one">Esta la recetta por %1$d persona.</item>
+        <item quantity="other">Esta la recetta por %1$d personas.</item>
     </plurals>
 
     <!-- Arrays translations -->
